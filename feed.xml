@@ -2,24 +2,56 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>core dump</title>
-    <description>~/diary/ $ gcdb core.yyyymmdd&lt;br&gt; &amp;copy;garbage-collection.net 2015.&lt;br&gt; (gcdb) break main&lt;br&gt; Breakpoint 1 at 0x20150628: file core.yyyymmdd, line 1.&lt;br&gt; (gdbd) run&lt;br&gt; Starting program: /diary/core.yyyymmdd&lt;br&gt;
+    <description>&amp;copy; 2015 garbage-collection.net.
 </description>
     <link>http://core.garbage-collection.net/</link>
     <atom:link href="http://core.garbage-collection.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 28 Jun 2015 23:24:34 +0900</pubDate>
-    <lastBuildDate>Sun, 28 Jun 2015 23:24:34 +0900</lastBuildDate>
+    <pubDate>Mon, 29 Jun 2015 00:56:27 +0900</pubDate>
+    <lastBuildDate>Mon, 29 Jun 2015 00:56:27 +0900</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
+    
+      <item>
+        <title>Jekyll設定</title>
+        <description>&lt;p&gt;JekyllでKramdownのオプション設定する&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span style=&quot;color: #75715e;font-style: italic&quot;&gt;# _config.yml&lt;/span&gt;
+
+&lt;span style=&quot;color: #75715e;font-style: italic&quot;&gt;# Site settings&lt;/span&gt;
+&lt;span style=&quot;color: #e6db74&quot;&gt;timezone&lt;/span&gt;&lt;span style=&quot;color: #f8f8f2;background-color: #49483e&quot;&gt;:&lt;/span&gt; &lt;span style=&quot;color: #e6db74&quot;&gt;Asia/Tokyo&lt;/span&gt;
+
+&lt;span style=&quot;color: #75715e;font-style: italic&quot;&gt;# Build settings&lt;/span&gt;
+&lt;span style=&quot;color: #e6db74&quot;&gt;markdown&lt;/span&gt;&lt;span style=&quot;color: #f8f8f2;background-color: #49483e&quot;&gt;:&lt;/span&gt; &lt;span style=&quot;color: #e6db74&quot;&gt;kramdown&lt;/span&gt;
+&lt;span style=&quot;color: #e6db74&quot;&gt;kramdown&lt;/span&gt;&lt;span style=&quot;color: #f8f8f2;background-color: #49483e&quot;&gt;:&lt;/span&gt;
+  &lt;span style=&quot;color: #e6db74&quot;&gt;input&lt;/span&gt;&lt;span style=&quot;color: #f8f8f2;background-color: #49483e&quot;&gt;:&lt;/span&gt; &lt;span style=&quot;color: #e6db74&quot;&gt;GFM&lt;/span&gt;
+  &lt;span style=&quot;color: #e6db74&quot;&gt;syntax_highlighter&lt;/span&gt;&lt;span style=&quot;color: #f8f8f2;background-color: #49483e&quot;&gt;:&lt;/span&gt; &lt;span style=&quot;color: #e6db74&quot;&gt;rouge&lt;/span&gt;
+  &lt;span style=&quot;color: #e6db74&quot;&gt;syntax_highlighter_opts&lt;/span&gt;&lt;span style=&quot;color: #f8f8f2;background-color: #49483e&quot;&gt;:&lt;/span&gt; &lt;span style=&quot;color: #f8f8f2;background-color: #49483e&quot;&gt;{&lt;/span&gt; &lt;span style=&quot;color: #f8f8f2&quot;&gt;inline_theme&lt;/span&gt;&lt;span style=&quot;color: #f8f8f2;background-color: #49483e&quot;&gt;:&lt;/span&gt; &lt;span style=&quot;color: #f8f8f2&quot;&gt;monokai&lt;/span&gt; &lt;span style=&quot;color: #f8f8f2;background-color: #49483e&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
+        <pubDate>Mon, 29 Jun 2015 00:49:27 +0900</pubDate>
+        <link>http://core.garbage-collection.net/2015/06/29/jekyll-config.html</link>
+        <guid isPermaLink="true">http://core.garbage-collection.net/2015/06/29/jekyll-config.html</guid>
+        
+        
+      </item>
     
       <item>
         <title>Octopress備忘録</title>
         <description>&lt;h2 id=&quot;section&quot;&gt;覚書&lt;/h2&gt;
 
-&lt;p&gt;&lt;code&gt;
-$ octopress new post &#39;title&#39;
-$ vim _posts/yyyy-mm-dd-title.markdown
-$ jekyll build
-$ octopress deploy
-&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;octopress new post &lt;span style=&quot;color: #e6db74&quot;&gt;&#39;title&#39;&lt;/span&gt;
+vim _posts/yyyy-mm-dd-title.markdown
+jekyll build
+octopress deploy
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span style=&quot;color: #66d9ef&quot;&gt;Global_val&lt;/span&gt; &lt;span style=&quot;color: #f92672;font-weight: bold&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #e6db74&quot;&gt;&quot;hoge&quot;&lt;/span&gt;
+&lt;span style=&quot;color: #f8f8f2;background-color: #49483e&quot;&gt;local_val&lt;/span&gt; &lt;span style=&quot;color: #f92672;font-weight: bold&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #ae81ff&quot;&gt;555&lt;/span&gt;
+
+&lt;span style=&quot;color: #f8f8f2&quot;&gt;print&lt;/span&gt; &lt;span style=&quot;color: #e6db74&quot;&gt;&quot;&lt;/span&gt;&lt;span style=&quot;color: #e6db74&quot;&gt;#{&lt;/span&gt;&lt;span style=&quot;color: #66d9ef&quot;&gt;Global_val&lt;/span&gt;&lt;span style=&quot;color: #e6db74&quot;&gt;}&lt;/span&gt;&lt;span style=&quot;color: #e6db74&quot;&gt; : &lt;/span&gt;&lt;span style=&quot;color: #e6db74&quot;&gt;#{&lt;/span&gt;&lt;span style=&quot;color: #f8f8f2;background-color: #49483e&quot;&gt;local_val&lt;/span&gt;&lt;span style=&quot;color: #e6db74&quot;&gt;}&lt;/span&gt;&lt;span style=&quot;color: #e6db74&quot;&gt;&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 </description>
         <pubDate>Sun, 28 Jun 2015 23:07:01 +0900</pubDate>
         <link>http://core.garbage-collection.net/2015/06/28/octopress.html</link>
@@ -30,7 +62,7 @@ $ octopress deploy
     
       <item>
         <title>リニューアル</title>
-        <description>&lt;p&gt;備忘録的なものを残すために、以前Octopress2でサイトを作ってみたが、
+        <description>&lt;p&gt;備忘録的なものを残すために、以前Octopress2でサイトを作ってみたが、&lt;br /&gt;
 全く更新していなかった。&lt;/p&gt;
 
 &lt;p&gt;今回改めてサイトを作り直すにあたり、Octopress3に移行してアドレスも変更した。&lt;/p&gt;

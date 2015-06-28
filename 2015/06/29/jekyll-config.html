@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Octopress備忘録</title>
-  <meta name="description" content="覚書">
+  <title>Jekyll設定</title>
+  <meta name="description" content="JekyllでKramdownのオプション設定する">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://core.garbage-collection.net/2015/06/28/octopress.html">
+  <link rel="canonical" href="http://core.garbage-collection.net/2015/06/29/jekyll-config.html">
   <link rel="alternate" type="application/rss+xml" title="core dump" href="http://core.garbage-collection.net/feed.xml" />
 </head>
 
@@ -57,24 +57,24 @@
         <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">Octopress備忘録</h1>
-    <p class="post-meta">Jun 28, 2015</p>
+    <h1 class="post-title">Jekyll設定</h1>
+    <p class="post-meta">Jun 29, 2015</p>
   </header>
 
   <article class="post-content">
-    <h2 id="section">覚書</h2>
+    <p>JekyllでKramdownのオプション設定する</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>octopress new post <span style="color: #e6db74">'title'</span>
-vim _posts/yyyy-mm-dd-title.markdown
-jekyll build
-octopress deploy
-</code></pre>
-</div>
+<div class="highlighter-rouge"><pre class="highlight"><code><span style="color: #75715e;font-style: italic"># _config.yml</span>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span style="color: #66d9ef">Global_val</span> <span style="color: #f92672;font-weight: bold">=</span> <span style="color: #e6db74">"hoge"</span>
-<span style="color: #f8f8f2;background-color: #49483e">local_val</span> <span style="color: #f92672;font-weight: bold">=</span> <span style="color: #ae81ff">555</span>
+<span style="color: #75715e;font-style: italic"># Site settings</span>
+<span style="color: #e6db74">timezone</span><span style="color: #f8f8f2;background-color: #49483e">:</span> <span style="color: #e6db74">Asia/Tokyo</span>
 
-<span style="color: #f8f8f2">print</span> <span style="color: #e6db74">"</span><span style="color: #e6db74">#{</span><span style="color: #66d9ef">Global_val</span><span style="color: #e6db74">}</span><span style="color: #e6db74"> : </span><span style="color: #e6db74">#{</span><span style="color: #f8f8f2;background-color: #49483e">local_val</span><span style="color: #e6db74">}</span><span style="color: #e6db74">"</span>
+<span style="color: #75715e;font-style: italic"># Build settings</span>
+<span style="color: #e6db74">markdown</span><span style="color: #f8f8f2;background-color: #49483e">:</span> <span style="color: #e6db74">kramdown</span>
+<span style="color: #e6db74">kramdown</span><span style="color: #f8f8f2;background-color: #49483e">:</span>
+  <span style="color: #e6db74">input</span><span style="color: #f8f8f2;background-color: #49483e">:</span> <span style="color: #e6db74">GFM</span>
+  <span style="color: #e6db74">syntax_highlighter</span><span style="color: #f8f8f2;background-color: #49483e">:</span> <span style="color: #e6db74">rouge</span>
+  <span style="color: #e6db74">syntax_highlighter_opts</span><span style="color: #f8f8f2;background-color: #49483e">:</span> <span style="color: #f8f8f2;background-color: #49483e">{</span> <span style="color: #f8f8f2">inline_theme</span><span style="color: #f8f8f2;background-color: #49483e">:</span> <span style="color: #f8f8f2">monokai</span> <span style="color: #f8f8f2;background-color: #49483e">}</span>
 </code></pre>
 </div>
 
