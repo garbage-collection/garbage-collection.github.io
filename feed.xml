@@ -2,12 +2,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>core dump</title>
-    <description>~/diary/ $ gcdb core.yyyymmdd &amp;copy;garbage-collection.net 2015. (gcdb) break main Breakpoint 1 at 0x20150628: file core.yyyymmdd, line 0000. (gdbd) run Starting program: /diary/core.yyyymmdd
+    <description>~/diary/ $ gcdb core.yyyymmdd&lt;br&gt; &amp;copy;garbage-collection.net 2015.&lt;br&gt; (gcdb) break main&lt;br&gt; Breakpoint 1 at 0x20150628: file core.yyyymmdd, line 0000.&lt;br&gt; (gdbd) run&lt;br&gt; Starting program: /diary/core.yyyymmdd&lt;br&gt;
 </description>
     <link>http://core.garbage-collection.net/</link>
     <atom:link href="http://core.garbage-collection.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 28 Jun 2015 20:11:41 +0900</pubDate>
-    <lastBuildDate>Sun, 28 Jun 2015 20:11:41 +0900</lastBuildDate>
+    <pubDate>Sun, 28 Jun 2015 21:00:05 +0900</pubDate>
+    <lastBuildDate>Sun, 28 Jun 2015 21:00:05 +0900</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
@@ -20,8 +20,8 @@
 &lt;p&gt;どれくらい続くかわからないが、色々試してみようと思う。&lt;/p&gt;
 </description>
         <pubDate>Sun, 28 Jun 2015 19:55:52 +0900</pubDate>
-        <link>http://core.garbage-collection.net/2015/06/28/.html</link>
-        <guid isPermaLink="true">http://core.garbage-collection.net/2015/06/28/.html</guid>
+        <link>http://core.garbage-collection.net/2015/06/28/renewal.html</link>
+        <guid isPermaLink="true">http://core.garbage-collection.net/2015/06/28/renewal.html</guid>
         
         
       </item>
