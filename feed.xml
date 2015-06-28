@@ -6,8 +6,8 @@
 </description>
     <link>http://core.garbage-collection.net/</link>
     <atom:link href="http://core.garbage-collection.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 29 Jun 2015 00:56:27 +0900</pubDate>
-    <lastBuildDate>Mon, 29 Jun 2015 00:56:27 +0900</lastBuildDate>
+    <pubDate>Mon, 29 Jun 2015 00:57:31 +0900</pubDate>
+    <lastBuildDate>Mon, 29 Jun 2015 00:57:31 +0900</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
@@ -43,13 +43,6 @@
 vim _posts/yyyy-mm-dd-title.markdown
 jekyll build
 octopress deploy
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span style=&quot;color: #66d9ef&quot;&gt;Global_val&lt;/span&gt; &lt;span style=&quot;color: #f92672;font-weight: bold&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #e6db74&quot;&gt;&quot;hoge&quot;&lt;/span&gt;
-&lt;span style=&quot;color: #f8f8f2;background-color: #49483e&quot;&gt;local_val&lt;/span&gt; &lt;span style=&quot;color: #f92672;font-weight: bold&quot;&gt;=&lt;/span&gt; &lt;span style=&quot;color: #ae81ff&quot;&gt;555&lt;/span&gt;
-
-&lt;span style=&quot;color: #f8f8f2&quot;&gt;print&lt;/span&gt; &lt;span style=&quot;color: #e6db74&quot;&gt;&quot;&lt;/span&gt;&lt;span style=&quot;color: #e6db74&quot;&gt;#{&lt;/span&gt;&lt;span style=&quot;color: #66d9ef&quot;&gt;Global_val&lt;/span&gt;&lt;span style=&quot;color: #e6db74&quot;&gt;}&lt;/span&gt;&lt;span style=&quot;color: #e6db74&quot;&gt; : &lt;/span&gt;&lt;span style=&quot;color: #e6db74&quot;&gt;#{&lt;/span&gt;&lt;span style=&quot;color: #f8f8f2;background-color: #49483e&quot;&gt;local_val&lt;/span&gt;&lt;span style=&quot;color: #e6db74&quot;&gt;}&lt;/span&gt;&lt;span style=&quot;color: #e6db74&quot;&gt;&quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 </description>
