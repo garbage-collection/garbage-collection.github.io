@@ -6,15 +6,15 @@
 </description>
     <link>http://core.garbage-collection.net/</link>
     <atom:link href="http://core.garbage-collection.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 28 Jun 2015 23:18:08 +0900</pubDate>
-    <lastBuildDate>Sun, 28 Jun 2015 23:18:08 +0900</lastBuildDate>
+    <pubDate>Sun, 28 Jun 2015 23:23:14 +0900</pubDate>
+    <lastBuildDate>Sun, 28 Jun 2015 23:23:14 +0900</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
         <title>Octopress備忘録</title>
         <description>&lt;h2 id=&quot;section&quot;&gt;覚書&lt;/h2&gt;
 
-&lt;p&gt;&lt;code&gt;zsh
+&lt;p&gt;&lt;code&gt;sh
 $ octopress new post &#39;title&#39;
 $ vim _posts/yyyy-mm-dd-title.markdown
 $ jekyll build
