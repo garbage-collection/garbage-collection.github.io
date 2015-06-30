@@ -13,7 +13,7 @@
   <link rel="canonical" href="http://core.garbage-collection.net/2015/06/29/jekyll-config.html">
   <link rel="alternate" type="application/rss+xml" title="core dump" href="http://core.garbage-collection.net/feed.xml" />
 </head>
-
+  <link href='/stylesheets/all-9554c420ff3732544cc9b1b6ea9c33a8.css' media='all' rel='stylesheet' type='text/css'>
 
   <body>
 
@@ -51,7 +51,6 @@
 
 </header>
 
-
     <div class="page-content">
       <div class="wrapper">
         <div class="post">
@@ -64,19 +63,16 @@
   <article class="post-content">
     <p>JekyllでKramdownのオプション設定する</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code><span style="color: #75715e;font-style: italic"># _config.yml</span>
+<figure class="code-highlight-figure"><div class="code-highlight"><pre class="code-highlight-pre"><div data-line="1" class="code-highlight-row numbered"><div class="code-highlight-line"><span class="c1"># _config.yml</span>
+</div></div><div data-line="2" class="code-highlight-row numbered"><div class="code-highlight-line"> </div></div><div data-line="3" class="code-highlight-row numbered"><div class="code-highlight-line"><span class="c1"># Site settings</span>
+</div></div><div data-line="4" class="code-highlight-row numbered"><div class="code-highlight-line"><span class="l-Scalar-Plain">timezone</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Asia/Tokyo</span>
+</div></div><div data-line="5" class="code-highlight-row numbered"><div class="code-highlight-line"> </div></div><div data-line="6" class="code-highlight-row numbered"><div class="code-highlight-line"><span class="c1"># Build settings</span>
+</div></div><div data-line="7" class="code-highlight-row numbered"><div class="code-highlight-line"><span class="l-Scalar-Plain">markdown</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">kramdown</span>
+</div></div><div data-line="8" class="code-highlight-row numbered"><div class="code-highlight-line"><span class="l-Scalar-Plain">kramdown</span><span class="p-Indicator">:</span>
+</div></div><div data-line="9" class="code-highlight-row numbered"><div class="code-highlight-line">  <span class="l-Scalar-Plain">input</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">GFM</span>
+</div></div><div data-line="10" class="code-highlight-row numbered"><div class="code-highlight-line">  <span class="l-Scalar-Plain">syntax_highlighter</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">rouge</span>
+</div></div><div data-line="11" class="code-highlight-row numbered"><div class="code-highlight-line">  <span class="l-Scalar-Plain">syntax_highlighter_opts</span><span class="p-Indicator">:</span> <span class="p-Indicator">&#x7b;</span> <span class="nv">inline_theme</span><span class="p-Indicator">:</span> <span class="nv">monokai</span> <span class="p-Indicator">&#x7d;</span></div></div></pre></div></figure>
 
-<span style="color: #75715e;font-style: italic"># Site settings</span>
-<span style="color: #e6db74">timezone</span><span style="color: #f8f8f2;background-color: #49483e">:</span> <span style="color: #e6db74">Asia/Tokyo</span>
-
-<span style="color: #75715e;font-style: italic"># Build settings</span>
-<span style="color: #e6db74">markdown</span><span style="color: #f8f8f2;background-color: #49483e">:</span> <span style="color: #e6db74">kramdown</span>
-<span style="color: #e6db74">kramdown</span><span style="color: #f8f8f2;background-color: #49483e">:</span>
-  <span style="color: #e6db74">input</span><span style="color: #f8f8f2;background-color: #49483e">:</span> <span style="color: #e6db74">GFM</span>
-  <span style="color: #e6db74">syntax_highlighter</span><span style="color: #f8f8f2;background-color: #49483e">:</span> <span style="color: #e6db74">rouge</span>
-  <span style="color: #e6db74">syntax_highlighter_opts</span><span style="color: #f8f8f2;background-color: #49483e">:</span> <span style="color: #f8f8f2;background-color: #49483e">{</span> <span style="color: #f8f8f2">inline_theme</span><span style="color: #f8f8f2;background-color: #49483e">:</span> <span style="color: #f8f8f2">monokai</span> <span style="color: #f8f8f2;background-color: #49483e">}</span>
-</code></pre>
-</div>
 
   </article>
 
@@ -141,7 +137,6 @@
   </div>
 
 </footer>
-
 
   </body>
 
