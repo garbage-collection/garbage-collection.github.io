@@ -6,12 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>core dump</title>
-  <meta name="description" content="&copy; 2015 garbage-collection.net.
-">
+  <title>OctpressでPost Errorが出た</title>
+  <meta name="description" content="久々に記事を投稿しようとした所、OctpressでPostエラーが出てしまった。">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://core.garbage-collection.net/">
+  <link rel="canonical" href="http://core.garbage-collection.net/2015/08/08/octpress-post-error.html">
   <link rel="alternate" type="application/rss+xml" title="core dump" href="http://core.garbage-collection.net/feed.xml" />
 </head>
   <link href='/stylesheets/all-9554c420ff3732544cc9b1b6ea9c33a8.css' media='all' rel='stylesheet' type='text/css'>
@@ -54,63 +53,24 @@
 
     <div class="page-content">
       <div class="wrapper">
-        <div class="home">
+        <div class="post">
 
-  <h1 class="page-heading">Posts</h1>
+  <header class="post-header">
+    <h1 class="post-title">OctpressでPost Errorが出た</h1>
+    <p class="post-meta">Aug 8, 2015</p>
+  </header>
 
-  <ul class="post-list">
-    
-      <li>
-        <span class="post-meta">Aug 8, 2015</span>
+  <article class="post-content">
+    <p>久々に記事を投稿しようとした所、<br />
+OctpressでPostエラーが出てしまった。</p>
 
-        <h2>
-          <a class="post-link" href="/2015/08/08/octpress-post-error.html">OctpressでPost Errorが出た</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Aug 8, 2015</span>
+<figure class="code-highlight-figure"><div class="code-highlight"><pre class="code-highlight-pre"><div data-line="1" class="code-highlight-row numbered"><div class="code-highlight-line">... /.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/safe_yaml-1.0.4/lib/safe_yaml/psych_resolver.rb:4:in `&lt;class:PsychResolver&gt;': uninitialized constant Psych::Nodes (NameError)</div></div></pre></div></figure>
 
-        <h2>
-          <a class="post-link" href="/2015/08/08/mba-mid2011-install-windows8-1-pro.html">MBA-mid2011 Install Windows8.1 Pro</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Jun 30, 2015</span>
+<p>調べた所、<a href="https://github.com/jekyll/jekyll/issues/3201">同じエラーが出ている人</a>がいて<br />
+$ gem cleanup をしたら解決した。</p>
 
-        <h2>
-          <a class="post-link" href="/2015/06/30/octopress-plugin.html">Octopress Plugin追加</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Jun 29, 2015</span>
 
-        <h2>
-          <a class="post-link" href="/2015/06/29/jekyll-config.html">Jekyll設定</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Jun 28, 2015</span>
-
-        <h2>
-          <a class="post-link" href="/2015/06/28/octopress.html">Octopress備忘録</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Jun 28, 2015</span>
-
-        <h2>
-          <a class="post-link" href="/2015/06/28/renewal.html">リニューアル</a>
-        </h2>
-      </li>
-    
-  </ul>
-
-  <p class="rss-subscribe">subscribe <a href="/feed.xml">via RSS</a></p>
+  </article>
 
 </div>
 

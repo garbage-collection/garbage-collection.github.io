@@ -6,9 +6,38 @@
 </description>
     <link>http://core.garbage-collection.net/</link>
     <atom:link href="http://core.garbage-collection.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 30 Jun 2015 23:59:50 +0900</pubDate>
-    <lastBuildDate>Tue, 30 Jun 2015 23:59:50 +0900</lastBuildDate>
+    <pubDate>Sun, 09 Aug 2015 00:00:38 +0900</pubDate>
+    <lastBuildDate>Sun, 09 Aug 2015 00:00:38 +0900</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
+    
+      <item>
+        <title>OctpressでPost Errorが出た</title>
+        <description>&lt;p&gt;久々に記事を投稿しようとした所、&lt;br /&gt;
+OctpressでPostエラーが出てしまった。&lt;/p&gt;
+
+&lt;figure class=&quot;code-highlight-figure&quot;&gt;&lt;div class=&quot;code-highlight&quot;&gt;&lt;pre class=&quot;code-highlight-pre&quot;&gt;&lt;div data-line=&quot;1&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;... /.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/safe_yaml-1.0.4/lib/safe_yaml/psych_resolver.rb:4:in `&amp;lt;class:PsychResolver&amp;gt;&#39;: uninitialized constant Psych::Nodes (NameError)&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;
+
+&lt;p&gt;調べた所、&lt;a href=&quot;https://github.com/jekyll/jekyll/issues/3201&quot;&gt;同じエラーが出ている人&lt;/a&gt;がいて&lt;br /&gt;
+$ gem cleanup をしたら解決した。&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 08 Aug 2015 23:04:36 +0900</pubDate>
+        <link>http://core.garbage-collection.net/2015/08/08/octpress-post-error.html</link>
+        <guid isPermaLink="true">http://core.garbage-collection.net/2015/08/08/octpress-post-error.html</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>MBA-mid2011 Install Windows8.1 Pro</title>
+        <description>
+</description>
+        <pubDate>Sat, 08 Aug 2015 23:04:00 +0900</pubDate>
+        <link>http://core.garbage-collection.net/2015/08/08/mba-mid2011-install-windows8-1-pro.html</link>
+        <guid isPermaLink="true">http://core.garbage-collection.net/2015/08/08/mba-mid2011-install-windows8-1-pro.html</guid>
+        
+        
+      </item>
     
       <item>
         <title>Octopress Plugin追加</title>
