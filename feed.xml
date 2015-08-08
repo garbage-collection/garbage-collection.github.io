@@ -6,8 +6,8 @@
 </description>
     <link>http://core.garbage-collection.net/</link>
     <atom:link href="http://core.garbage-collection.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 09 Aug 2015 00:00:38 +0900</pubDate>
-    <lastBuildDate>Sun, 09 Aug 2015 00:00:38 +0900</lastBuildDate>
+    <pubDate>Sun, 09 Aug 2015 00:03:08 +0900</pubDate>
+    <lastBuildDate>Sun, 09 Aug 2015 00:03:08 +0900</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
@@ -24,17 +24,6 @@ $ gem cleanup をしたら解決した。&lt;/p&gt;
         <pubDate>Sat, 08 Aug 2015 23:04:36 +0900</pubDate>
         <link>http://core.garbage-collection.net/2015/08/08/octpress-post-error.html</link>
         <guid isPermaLink="true">http://core.garbage-collection.net/2015/08/08/octpress-post-error.html</guid>
-        
-        
-      </item>
-    
-      <item>
-        <title>MBA-mid2011 Install Windows8.1 Pro</title>
-        <description>
-</description>
-        <pubDate>Sat, 08 Aug 2015 23:04:00 +0900</pubDate>
-        <link>http://core.garbage-collection.net/2015/08/08/mba-mid2011-install-windows8-1-pro.html</link>
-        <guid isPermaLink="true">http://core.garbage-collection.net/2015/08/08/mba-mid2011-install-windows8-1-pro.html</guid>
         
         
       </item>
