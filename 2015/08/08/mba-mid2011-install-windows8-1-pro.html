@@ -6,12 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>core dump</title>
-  <meta name="description" content="&copy; 2015 garbage-collection.net.
-">
+  <title>MacBook Air(mid2011) に Windows8.1 Proをインストール (0)</title>
+  <meta name="description" content="動機">
 
   <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://core.garbage-collection.net/">
+  <link rel="canonical" href="http://core.garbage-collection.net/2015/08/08/mba-mid2011-install-windows8-1-pro.html">
   <link rel="alternate" type="application/rss+xml" title="core dump" href="http://core.garbage-collection.net/feed.xml" />
 </head>
   <link href='/stylesheets/all-9554c420ff3732544cc9b1b6ea9c33a8.css' media='all' rel='stylesheet' type='text/css'>
@@ -54,63 +53,57 @@
 
     <div class="page-content">
       <div class="wrapper">
-        <div class="home">
+        <div class="post">
 
-  <h1 class="page-heading">Posts</h1>
+  <header class="post-header">
+    <h1 class="post-title">MacBook Air(mid2011) に Windows8.1 Proをインストール (0)</h1>
+    <p class="post-meta">Aug 8, 2015</p>
+  </header>
 
-  <ul class="post-list">
-    
-      <li>
-        <span class="post-meta">Aug 8, 2015</span>
+  <article class="post-content">
+    <h2 id="section">動機</h2>
 
-        <h2>
-          <a class="post-link" href="/2015/08/08/mba-mid2011-install-windows8-1-pro.html">MacBook Air(mid2011) に Windows8.1 Proをインストール (0)</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Aug 8, 2015</span>
+<p>Windows10 Insider Previewが出たのを契機に、昔購入した<a href="https://support.apple.com/kb/SP631?locale=ja_JP&amp;viewlocale=ja_JP">MacBook Air(mid2011)</a>が余っていたので、<br />
+インストールして遊んでみようと思った。あわよくば最低品質でも良いので<a href="http://www.dd-on.jp/pc/">Dragon’s Dogma Online</a>がプレイ出来るんじゃないかと甘い目論見もあった。</p>
 
-        <h2>
-          <a class="post-link" href="/2015/08/08/octpress-post-error.html">OctpressでPost Errorが出た</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Jun 30, 2015</span>
+<p>しかしインストールで何度もつまずき、<br />
+インストール後もBootCampのソフトウェアを入れると画面がブラックアウトしてしまう症状に遭遇。<br />
+それならとBootCampを入れずに使おうとすると自動更新がかかり、やはり同じ症状になる。</p>
 
-        <h2>
-          <a class="post-link" href="/2015/06/30/octopress-plugin.html">Octopress Plugin追加</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Jun 29, 2015</span>
+<p>7月頃から色々試行錯誤するも改善の見込みなく、結局Windows10は断念したが、<br />
+ いくつか試してみたい事があって、Windowsを購入する事にした。<br />
+どのバージョンにするか迷ったが、以下の条件からWindows8.1 Proを選択。</p>
 
-        <h2>
-          <a class="post-link" href="/2015/06/29/jekyll-config.html">Jekyll設定</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Jun 28, 2015</span>
+<ol>
+  <li>UEFI環境でインストールしたい</li>
+  <li>契約しているOffice365のAzureADに参加したい</li>
+  <li>将来的にWindows10にアップグレードした場合、<a href="http://ascii.jp/elem/000/001/030/1030049/">更新が強制的にかかる</a>様になるが、<br />
+  出来るだけ新機能の適用を先延ばしして様子見したい。</li>
+</ol>
 
-        <h2>
-          <a class="post-link" href="/2015/06/28/octopress.html">Octopress備忘録</a>
-        </h2>
-      </li>
-    
-      <li>
-        <span class="post-meta">Jun 28, 2015</span>
+<p>1.は今回デュアルブートにする予定もないので、<br />
+BootCampアシスタントを利用したインストール時のMBRパーティション周りのトラブルは避けたい。<br />
+まっさらなSSDにインストールするのであれば、素のUEFI環境に対応したOSなら大丈夫だろう。<br />
+という条件で調べた所、MacのUEFIとWindows7はあまり相性が良くない、という記述を見かけたのでWindows7は脱落。</p>
 
-        <h2>
-          <a class="post-link" href="/2015/06/28/renewal.html">リニューアル</a>
-        </h2>
-      </li>
-    
-  </ul>
+<p>2.はOffice365を契約しており、利用できるならせっかくだしという理由。Pro以上のバージョンが必要。</p>
 
-  <p class="rss-subscribe">subscribe <a href="/feed.xml">via RSS</a></p>
+<p>3.は今までWindowsを使っていた時に、自分のタイミングで手動更新していたので、<br />
+勝手にアップデートがかかるのは嫌だという理由。Pro以上ならある程度アップデートのタイミングを<a href="http://bluewatersoft.cocolog-nifty.com/blog/2015/05/windows-10-wind.html">コントロールする事が出来る</a>みたいだ。</p>
+
+<p>以上からWindows8.1 Pro(DSP版)を購入。￥16,462。<br />
+Windows10と同じ結果になったらどうしようと思ったが、さすがに枯れているだろうし、<br />
+インストールに成功している記事も見かけたので、リスクは低いだろうと考えた。<br />
+ダメだったら最悪VirtualBox上で利用しよう。</p>
+
+<p>そして今日(8/8)Windows8.1が届いた。</p>
+
+<p><img src="https://dl.dropboxusercontent.com/u/16587369/Win8disc.jpg" alt="Windows8.1 Disk" /></p>
+
+<p>次回へ続く</p>
+
+
+  </article>
 
 </div>
 
