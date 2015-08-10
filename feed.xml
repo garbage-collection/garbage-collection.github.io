@@ -6,12 +6,162 @@
 </description>
     <link>http://core.garbage-collection.net/</link>
     <atom:link href="http://core.garbage-collection.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 09 Aug 2015 23:56:01 +0900</pubDate>
-    <lastBuildDate>Sun, 09 Aug 2015 23:56:01 +0900</lastBuildDate>
+    <pubDate>Tue, 11 Aug 2015 03:44:15 +0900</pubDate>
+    <lastBuildDate>Tue, 11 Aug 2015 03:44:15 +0900</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
     
       <item>
-        <title>MacBook Air(mid2011) に Windows8.1 Proをインストール (0)</title>
+        <title>MacBook Air(mid2011) に Windows8.1 Proをインストール (1) -- インストール</title>
+        <description>&lt;h2 id=&quot;section&quot;&gt;インストール&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;/2015/08/08/mba-mid2011-install-windows8-1-pro.html&quot;&gt;前回&lt;/a&gt;からの続き&lt;br /&gt;
+今回はインストールから最低限動作するまで&lt;/p&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;環境&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://support.apple.com/kb/SP631?locale=ja_JP&amp;amp;viewlocale=ja_JP&quot;&gt;MacBook Air(mid2011)&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Size&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;11inch&lt;/strong&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;CPU&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;Intel Core i5(1.6GHz)&lt;/strong&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Mem&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;4GB&lt;/strong&gt;(オンラインストアで増量)&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;SSD&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;64GB&lt;/strong&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Key&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;US配列&lt;/strong&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;section-2&quot;&gt;手順&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;外付けDVD-ROMドライブに&lt;strong&gt;Windows8.1 Pro&lt;/strong&gt;のディスクをセット&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Macに外付けドライブを繋いで電源ON&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;起動音が鳴ったら&lt;code&gt;Option&lt;/code&gt;キーを押す&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;EFI Boot&lt;/strong&gt;と表示のあるCD-ROMのアイコンを選択&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;セットアップ画面&lt;/strong&gt;が表示されるので&lt;strong&gt;英語キーボード&lt;/strong&gt;を選択して&lt;strong&gt;次へ&lt;/strong&gt;&lt;br /&gt;
+  &lt;img src=&quot;https://dl.dropboxusercontent.com/u/16587369/dvd-boot-win81.jpg&quot; alt=&quot;セットアップ画面&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;シリアル&lt;/strong&gt;を入力し&lt;strong&gt;ライセンス条項&lt;/strong&gt;に同意するとパーティションテーブルが表示される&lt;br /&gt;
+  &lt;img src=&quot;https://dl.dropboxusercontent.com/u/16587369/partition-table.jpg&quot; alt=&quot;パーティションテーブル&quot; /&gt;&lt;br /&gt;
+  &lt;strong&gt;パーティション4&lt;/strong&gt;が以前Windows10のインストールに失敗した領域&lt;br /&gt;
+  &lt;strong&gt;パーティション3&lt;/strong&gt;がWindowsをインストールしようとすると自動的に作成されるMBR領域&lt;br /&gt;
+  正直な所、UEFIでインストールしたかったのでMBRが作成されても困るのだが、&lt;br /&gt;
+  良くわからなかったので放置していた&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;パーティション2(OSX)、3、4を削除し、改めて新規パーティションを作成するが、やはりMBRが作成されてしまう&lt;br /&gt;
+  &lt;img src=&quot;https://dl.dropboxusercontent.com/u/16587369/repartition.jpg&quot; alt=&quot;パーティション再作成&quot; /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;仕方がないのでこのままパーティション3をフォーマットしインストール&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;インストールも終わりに近づいた所で、&lt;strong&gt;Windows10にアップグレード&lt;/strong&gt;の画面が出たが拒否&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Windows8.1のデスクトップ画面が表示された。&lt;br /&gt;
+  解像度は1366x768(スクリーンショットを撮りたかったがキーがわからない)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;ここでUSBメモリを接続し&lt;strong&gt;BootCamp 5.1.5621&lt;/strong&gt;のインストールを始めたが、途中で画面が真っ暗に&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;…Windows10と同じ症状が。どうもBootCampが鬼門らしい。&lt;/p&gt;
+
+&lt;p&gt;もう一度DVD-ROMからインストールし直してみるが、&lt;br /&gt;
+今度は何度やっても&lt;strong&gt;手順4.&lt;/strong&gt;から画面が真っ暗になり進まない。&lt;/p&gt;
+
+&lt;p&gt;しばらくしてUSBメモリが接続したままだった事を思い出し一旦外す。&lt;br /&gt;
+これで次の画面へ進める事が出来た。&lt;/p&gt;
+
+&lt;p&gt;しかし&lt;strong&gt;手順7.&lt;/strong&gt;でパーティションを作り直した所、今度はエラーが出てフォーマット出来なくなった。&lt;br /&gt;
+思い切ってパーティション1(EFI)も削除して作り直した所フォーマット成功。&lt;br /&gt;
+やっとDVD-ROMでもう一度インストール出来た。&lt;strong&gt;Windows10のアップグレード&lt;/strong&gt;が表示されたが拒否。&lt;/p&gt;
+
+&lt;p&gt;デスクトップの画面まで戻って来れたのはいいが、解像度が1024x768になっていて変更が出来ない。&lt;br /&gt;
+とりあえず鬼門のBootCampは後回しにし、8.1の操作に慣れようと&lt;br /&gt;
+10分ほど設定項目などメニューを触っていた所、また画面が真っ暗に…。&lt;br /&gt;
+11時頃からインストールを始めたが、15時近くになってまた振り出しに戻ってしまった。&lt;/p&gt;
+
+&lt;p&gt;再度DVD-ROMを起動しセットアップメニューで途方に暮れていた所、&lt;br /&gt;
+メニュー内にディスククリーンのような項目があり、実施すると&lt;strong&gt;手順9.&lt;/strong&gt;あたりまで戻ってくる事が出来た。&lt;br /&gt;
+&lt;strong&gt;Windows10のアップグレード&lt;/strong&gt;は拒否。&lt;/p&gt;
+
+&lt;p&gt;ここで一旦Windowsの電源を落として、不具合の原因と今後の方針を考てみる。&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;画面が暗くなるという事はビデオドライバ周りのトラブルの可能性が高い&lt;br /&gt;
+-&amp;gt; USBメモリ内のBootCamp/Driversから&lt;strong&gt;ATI,Intel,NVidiaのドライバを削除&lt;/strong&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;WindowsUpdateの自動更新が裏で走っていて、&lt;br /&gt;
+10分ぐらいのタイミングで更新している内容に画面が真っ暗になる要因があるのではないか&lt;br /&gt;
+-&amp;gt; 自動更新の停止&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;まずWindowsを立ち上げた後、真っ先に&lt;strong&gt;自動更新の停止&lt;/strong&gt;を実施。&lt;br /&gt;
+次に一部ドライバ削除したUSBメモリのBootCampを実行した所、&lt;br /&gt;
+途中で画面が暗くなる事もなくBootCampのインストール完了。&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;また10分経っても画面が暗くなる事はなくなった。&lt;/strong&gt;&lt;br /&gt;
+やはりビデオドライバ周りのトラブルだった様だ。&lt;/p&gt;
+
+&lt;p&gt;ようやっと突然画面が暗くなる症状に怯える事なく、Windowsが使える様にはなったが、&lt;br /&gt;
+まだ解決していない問題が2つあった。&lt;/p&gt;
+
+&lt;p&gt;一つは横に間延びした解像度(1024x768)の画面。&lt;br /&gt;
+上記理由により、ビデオドライバの問題を更新しない限り解決する事は出来ないだろう。&lt;br /&gt;
+しかしどのビデオドライバを使ったら良いのかわからない。&lt;/p&gt;
+
+&lt;p&gt;そしてもう一つは、初回インストールからずっと光続けるキーボードライト。&lt;br /&gt;
+再起動する度に消したはずのライトが光ってしまう。&lt;br /&gt;
+どうしたら設定が保存されるかわからない。&lt;/p&gt;
+
+&lt;p&gt;この段階で時間は19時を回っており、&lt;br /&gt;
+トラブルシュートばかりにうんざりしていたので、&lt;br /&gt;
+上記問題は後回しにしてWindowsでやってみたい事に先に手を出す事にした。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://www.dd-on.jp/pc/&quot;&gt;Dragon’s Dogma Online&lt;/a&gt;のインストールである。&lt;/p&gt;
+
+&lt;p&gt;次回へ&lt;/p&gt;
+</description>
+        <pubDate>Tue, 11 Aug 2015 00:35:45 +0900</pubDate>
+        <link>http://core.garbage-collection.net/2015/08/11/mba-windows8-1-install-02.html</link>
+        <guid isPermaLink="true">http://core.garbage-collection.net/2015/08/11/mba-windows8-1-install-02.html</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>MacBook Air(mid2011) に Windows8.1 Proをインストール (0) -- 動機</title>
         <description>&lt;h2 id=&quot;section&quot;&gt;動機&lt;/h2&gt;
 
 &lt;p&gt;Windows10 Insider Previewが出たのを契機に、昔購入した&lt;a href=&quot;https://support.apple.com/kb/SP631?locale=ja_JP&amp;amp;viewlocale=ja_JP&quot;&gt;MacBook Air(mid2011)&lt;/a&gt;が余っていたので、&lt;br /&gt;
@@ -51,7 +201,7 @@ Windows10と同じ結果になったらどうしようと思ったが、さす�
 
 &lt;p&gt;&lt;img src=&quot;https://dl.dropboxusercontent.com/u/16587369/Win8disc.jpg&quot; alt=&quot;Windows8.1 Disk&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;次回へ続く&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;/2015/08/11/mba-windows8-1-install-02.html&quot;&gt;次回&lt;/a&gt;へ続く&lt;/p&gt;
 
 </description>
         <pubDate>Sat, 08 Aug 2015 23:53:13 +0900</pubDate>

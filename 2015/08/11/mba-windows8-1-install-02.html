@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>MacBook Air(mid2011) に Windows8.1 Proをインストール (1) -- インストール</title>
+  <meta name="description" content="インストール">
+
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://core.garbage-collection.net/2015/08/11/mba-windows8-1-install-02.html">
+  <link rel="alternate" type="application/rss+xml" title="core dump" href="http://core.garbage-collection.net/feed.xml" />
+</head>
+  <link href='/stylesheets/all-9554c420ff3732544cc9b1b6ea9c33a8.css' media='all' rel='stylesheet' type='text/css'>
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">core dump</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+          
+          <a class="page-link" href="/about/">About</a>
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">MacBook Air(mid2011) に Windows8.1 Proをインストール (1) -- インストール</h1>
+    <p class="post-meta">Aug 11, 2015</p>
+  </header>
+
+  <article class="post-content">
+    <h2 id="section">インストール</h2>
+
+<p><a href="/2015/08/08/mba-mid2011-install-windows8-1-pro.html">前回</a>からの続き<br />
+今回はインストールから最低限動作するまで</p>
+
+<h3 id="section-1">環境</h3>
+
+<p><strong><a href="https://support.apple.com/kb/SP631?locale=ja_JP&amp;viewlocale=ja_JP">MacBook Air(mid2011)</a></strong></p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Size</td>
+      <td><strong>11inch</strong></td>
+    </tr>
+    <tr>
+      <td>CPU</td>
+      <td><strong>Intel Core i5(1.6GHz)</strong></td>
+    </tr>
+    <tr>
+      <td>Mem</td>
+      <td><strong>4GB</strong>(オンラインストアで増量)</td>
+    </tr>
+    <tr>
+      <td>SSD</td>
+      <td><strong>64GB</strong></td>
+    </tr>
+    <tr>
+      <td>Key</td>
+      <td><strong>US配列</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="section-2">手順</h3>
+
+<ol>
+  <li>
+    <p>外付けDVD-ROMドライブに<strong>Windows8.1 Pro</strong>のディスクをセット</p>
+  </li>
+  <li>
+    <p>Macに外付けドライブを繋いで電源ON</p>
+  </li>
+  <li>
+    <p>起動音が鳴ったら<code>Option</code>キーを押す</p>
+  </li>
+  <li>
+    <p><strong>EFI Boot</strong>と表示のあるCD-ROMのアイコンを選択</p>
+  </li>
+  <li>
+    <p><strong>セットアップ画面</strong>が表示されるので<strong>英語キーボード</strong>を選択して<strong>次へ</strong><br />
+  <img src="https://dl.dropboxusercontent.com/u/16587369/dvd-boot-win81.jpg" alt="セットアップ画面" /></p>
+  </li>
+  <li>
+    <p><strong>シリアル</strong>を入力し<strong>ライセンス条項</strong>に同意するとパーティションテーブルが表示される<br />
+  <img src="https://dl.dropboxusercontent.com/u/16587369/partition-table.jpg" alt="パーティションテーブル" /><br />
+  <strong>パーティション4</strong>が以前Windows10のインストールに失敗した領域<br />
+  <strong>パーティション3</strong>がWindowsをインストールしようとすると自動的に作成されるMBR領域<br />
+  正直な所、UEFIでインストールしたかったのでMBRが作成されても困るのだが、<br />
+  良くわからなかったので放置していた</p>
+  </li>
+  <li>
+    <p>パーティション2(OSX)、3、4を削除し、改めて新規パーティションを作成するが、やはりMBRが作成されてしまう<br />
+  <img src="https://dl.dropboxusercontent.com/u/16587369/repartition.jpg" alt="パーティション再作成" /></p>
+  </li>
+  <li>
+    <p>仕方がないのでこのままパーティション3をフォーマットしインストール</p>
+  </li>
+  <li>
+    <p>インストールも終わりに近づいた所で、<strong>Windows10にアップグレード</strong>の画面が出たが拒否</p>
+  </li>
+  <li>
+    <p>Windows8.1のデスクトップ画面が表示された。<br />
+  解像度は1366x768(スクリーンショットを撮りたかったがキーがわからない)</p>
+  </li>
+  <li>
+    <p>ここでUSBメモリを接続し<strong>BootCamp 5.1.5621</strong>のインストールを始めたが、途中で画面が真っ暗に</p>
+  </li>
+</ol>
+
+<p>…Windows10と同じ症状が。どうもBootCampが鬼門らしい。</p>
+
+<p>もう一度DVD-ROMからインストールし直してみるが、<br />
+今度は何度やっても<strong>手順4.</strong>から画面が真っ暗になり進まない。</p>
+
+<p>しばらくしてUSBメモリが接続したままだった事を思い出し一旦外す。<br />
+これで次の画面へ進める事が出来た。</p>
+
+<p>しかし<strong>手順7.</strong>でパーティションを作り直した所、今度はエラーが出てフォーマット出来なくなった。<br />
+思い切ってパーティション1(EFI)も削除して作り直した所フォーマット成功。<br />
+やっとDVD-ROMでもう一度インストール出来た。<strong>Windows10のアップグレード</strong>が表示されたが拒否。</p>
+
+<p>デスクトップの画面まで戻って来れたのはいいが、解像度が1024x768になっていて変更が出来ない。<br />
+とりあえず鬼門のBootCampは後回しにし、8.1の操作に慣れようと<br />
+10分ほど設定項目などメニューを触っていた所、また画面が真っ暗に…。<br />
+11時頃からインストールを始めたが、15時近くになってまた振り出しに戻ってしまった。</p>
+
+<p>再度DVD-ROMを起動しセットアップメニューで途方に暮れていた所、<br />
+メニュー内にディスククリーンのような項目があり、実施すると<strong>手順9.</strong>あたりまで戻ってくる事が出来た。<br />
+<strong>Windows10のアップグレード</strong>は拒否。</p>
+
+<p>ここで一旦Windowsの電源を落として、不具合の原因と今後の方針を考てみる。</p>
+
+<ul>
+  <li>
+    <p>画面が暗くなるという事はビデオドライバ周りのトラブルの可能性が高い<br />
+-&gt; USBメモリ内のBootCamp/Driversから<strong>ATI,Intel,NVidiaのドライバを削除</strong></p>
+  </li>
+  <li>
+    <p>WindowsUpdateの自動更新が裏で走っていて、<br />
+10分ぐらいのタイミングで更新している内容に画面が真っ暗になる要因があるのではないか<br />
+-&gt; 自動更新の停止</p>
+  </li>
+</ul>
+
+<p>まずWindowsを立ち上げた後、真っ先に<strong>自動更新の停止</strong>を実施。<br />
+次に一部ドライバ削除したUSBメモリのBootCampを実行した所、<br />
+途中で画面が暗くなる事もなくBootCampのインストール完了。</p>
+
+<p><strong>また10分経っても画面が暗くなる事はなくなった。</strong><br />
+やはりビデオドライバ周りのトラブルだった様だ。</p>
+
+<p>ようやっと突然画面が暗くなる症状に怯える事なく、Windowsが使える様にはなったが、<br />
+まだ解決していない問題が2つあった。</p>
+
+<p>一つは横に間延びした解像度(1024x768)の画面。<br />
+上記理由により、ビデオドライバの問題を更新しない限り解決する事は出来ないだろう。<br />
+しかしどのビデオドライバを使ったら良いのかわからない。</p>
+
+<p>そしてもう一つは、初回インストールからずっと光続けるキーボードライト。<br />
+再起動する度に消したはずのライトが光ってしまう。<br />
+どうしたら設定が保存されるかわからない。</p>
+
+<p>この段階で時間は19時を回っており、<br />
+トラブルシュートばかりにうんざりしていたので、<br />
+上記問題は後回しにしてWindowsでやってみたい事に先に手を出す事にした。</p>
+
+<p><a href="http://www.dd-on.jp/pc/">Dragon’s Dogma Online</a>のインストールである。</p>
+
+<p>次回へ</p>
+
+  </article>
+
+</div>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <h2 class="footer-heading">core dump</h2>
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col  footer-col-1">
+        <ul class="contact-list">
+          <li>core dump</li>
+          <li><a href="mailto:"></a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-2">
+        <ul class="social-media-list">
+          
+          <li>
+            <a href="https://github.com/garbage-collection">
+              <span class="icon  icon--github">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+                </svg>
+              </span>
+
+              <span class="username">garbage-collection</span>
+            </a>
+          </li>
+          
+
+          
+          <li>
+            <a href="https://twitter.com/gc_app">
+              <span class="icon  icon--twitter">
+                <svg viewBox="0 0 16 16">
+                  <path fill="#828282" d="M15.969,3.058c-0.586,0.26-1.217,0.436-1.878,0.515c0.675-0.405,1.194-1.045,1.438-1.809
+                  c-0.632,0.375-1.332,0.647-2.076,0.793c-0.596-0.636-1.446-1.033-2.387-1.033c-1.806,0-3.27,1.464-3.27,3.27 c0,0.256,0.029,0.506,0.085,0.745C5.163,5.404,2.753,4.102,1.14,2.124C0.859,2.607,0.698,3.168,0.698,3.767 c0,1.134,0.577,2.135,1.455,2.722C1.616,6.472,1.112,6.325,0.671,6.08c0,0.014,0,0.027,0,0.041c0,1.584,1.127,2.906,2.623,3.206 C3.02,9.402,2.731,9.442,2.433,9.442c-0.211,0-0.416-0.021-0.615-0.059c0.416,1.299,1.624,2.245,3.055,2.271 c-1.119,0.877-2.529,1.4-4.061,1.4c-0.264,0-0.524-0.015-0.78-0.046c1.447,0.928,3.166,1.469,5.013,1.469 c6.015,0,9.304-4.983,9.304-9.304c0-0.142-0.003-0.283-0.009-0.423C14.976,4.29,15.531,3.714,15.969,3.058z"/>
+                </svg>
+              </span>
+
+              <span class="username">gc_app</span>
+            </a>
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="footer-col  footer-col-3">
+        <p class="text">&copy; 2015 garbage-collection.net.
+</p>
+      </div>
+    </div>
+
+  </div>
+
+</footer>
+
+  </body>
+
+</html>
