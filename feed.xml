@@ -6,9 +6,143 @@
 </description>
     <link>http://core.garbage-collection.net/</link>
     <atom:link href="http://core.garbage-collection.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 11 Aug 2015 03:44:15 +0900</pubDate>
-    <lastBuildDate>Tue, 11 Aug 2015 03:44:15 +0900</lastBuildDate>
+    <pubDate>Sun, 16 Aug 2015 01:03:08 +0900</pubDate>
+    <lastBuildDate>Sun, 16 Aug 2015 01:03:08 +0900</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
+    
+      <item>
+        <title>MacBook Air(mid2011) に Windows8.1 Proをインストール (2) -- Dragon&#39;s Dogma Online</title>
+        <description>&lt;h2 id=&quot;dragons-dogma-online&quot;&gt;Dragon’s Dogma Online(ベンチマーク)&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;/2015/08/11/mba-windows8-1-install-02.html&quot;&gt;前回&lt;/a&gt;からの続き&lt;/p&gt;
+
+&lt;p&gt;ビデオドライバとWindowsの自動更新を後回しにする事で&lt;br /&gt;
+突然画面が真っ暗になる状況を回避。&lt;/p&gt;
+
+&lt;p&gt;しかし解像度が低くキーボードライトは光ったまま。&lt;br /&gt;
+細かい設定もしていないので、キーボードとトラックパッドが使いづらい。&lt;/p&gt;
+
+&lt;p&gt;通常は先にWindowsの環境を整えてから、個別のアプリケーションをインストールした方が良いのだろうが&lt;br /&gt;
+トラブルシュート続きで飽きてしまったので、&lt;br /&gt;
+先に試してみたかったDragon’s Dogma Onlineを動かしてみる事にする。&lt;/p&gt;
+
+&lt;h3 id=&quot;section&quot;&gt;ソフトとドライバをインストール&lt;/h3&gt;
+
+&lt;p&gt;まずはゲーム本体をインストールする前に、&lt;br /&gt;
+ベンチマークで快適にプレイできるかチェック。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://members.dd-on.jp/info/detail/4/119&quot;&gt;公式サイト&lt;/a&gt;からベンチマークソフトをDLしインストール。&lt;br /&gt;
+しかし「コンピューターにd3dx9_43.dllがないため〜」とエラーが出て起動せず。&lt;br /&gt;
+ネット検索をしてみるとDirectXが無い時のエラーの様だ。&lt;/p&gt;
+
+&lt;p&gt;こうなるとビデオドライバが無いと先に進めないので解決方法を探すしかない。&lt;br /&gt;
+幸運にも「&lt;a href=&quot;https://discussions.apple.com/thread/6527859?start=0&amp;amp;tstart=0&quot;&gt;Intel HD 3000 Bootcamp/Black screen/Windows driver&lt;/a&gt;」という情報があったので参考にする。&lt;br /&gt;
+内容としては「ちゃんとMacに対応した最新のBootCamp使ってる?」という事と、&lt;br /&gt;
+「Intelからドライバ落としてきたら?」という内容。&lt;/p&gt;
+
+&lt;p&gt;最新のBootCampは使っていたので、&lt;br /&gt;
+Intelからビデオドライバを落としてくる事にする。&lt;br /&gt;
+…が、Intelのページで迷子になってしまい、対応チップのドライバ単体ではなく、&lt;br /&gt;
+「&lt;a href=&quot;http://www.intel.com/p/ja_JP/support/detect&quot;&gt;Intel Driver Update Utility&lt;/a&gt;」をインストールしてしまった。&lt;br /&gt;
+まあ、最終的に適切なドライバが入ればいいか。&lt;/p&gt;
+
+&lt;p&gt;デスクトップに上記ユーティリティのインストーラをDLした所。&lt;br /&gt;
+(解像度が低いので画面が狭く、キーボードライトも光ったまま。非常に使いづらい)&lt;br /&gt;
+&lt;img src=&quot;https://dl.dropboxusercontent.com/u/16587369/win81-desktop.jpg&quot; alt=&quot;Windows8.1 Desktop&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;ビデオドライバインストール後。解像度が上がり(1366x768)右横にスペースができている&lt;br /&gt;
+&lt;img src=&quot;https://dl.dropboxusercontent.com/u/16587369/win81-desktop-driver-installed.jpg&quot; alt=&quot;Intel Driver Installed&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;次に古いDirectXを&lt;a href=&quot;http://www.microsoft.com/ja-jp/download/details.aspx?id=35&quot;&gt;インストール&lt;/a&gt;。&lt;br /&gt;
+というのも「d3dx9_43.dll」は&lt;strong&gt;DirectX 9&lt;/strong&gt;で、&lt;br /&gt;
+Windows8.1は&lt;strong&gt;DirectX 11&lt;/strong&gt;しかデフォルトでは入っていないからだ。&lt;/p&gt;
+
+&lt;h3 id=&quot;section-1&quot;&gt;ベンチマークスタート&lt;/h3&gt;
+
+&lt;p&gt;これでやっと準備が整ったので、ベンチマークスタート。&lt;br /&gt;
+Macのファンがめちゃくちゃ回り、ベンチのムービーがカクカクしている。&lt;br /&gt;
+幸先良く無いな…。画面を見ると&lt;strong&gt;最高品質&lt;/strong&gt;と表示されているので、これが原因だろう。&lt;/p&gt;
+
+&lt;p&gt;ちなみに以下がスコアに応じた評価になる。&lt;br /&gt;
+※ベンチスコア(公式より)&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;スコア&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;評価&lt;/strong&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;7000〜&lt;/td&gt;
+      &lt;td&gt;とても快適&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;3500〜6999&lt;/td&gt;
+      &lt;td&gt;快適&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;2000〜3499&lt;/td&gt;
+      &lt;td&gt;普通&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1000〜1999&lt;/td&gt;
+      &lt;td&gt;設定値変更を推奨&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;1000未満&lt;/td&gt;
+      &lt;td&gt;動作困難&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;期待と不安が入り混じる中ベンチ結果が出た。&lt;br /&gt;
+&lt;img src=&quot;https://dl.dropboxusercontent.com/u/16587369/ddo_bench_high_quality.jpg&quot; alt=&quot;BenchMark high quality&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;スコア809…結果は惨憺たるものだった。&lt;br /&gt;
+こちらとしても4年前のマシンで、&lt;br /&gt;
+最新のゲームが最高品質でなんて動くはずないとは思っていたので特に失望もない。&lt;br /&gt;
+ただ、思ったよりもスコアが低いので、最低品質で動作するのか不安になってきた。&lt;br /&gt;
+では期待を込めて&lt;strong&gt;標準&lt;/strong&gt;、&lt;strong&gt;低&lt;/strong&gt;で再度ベンチマークを走らせてみよう。&lt;/p&gt;
+
+&lt;p&gt;ベンチマーク最終結果&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;品質&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;スコア&lt;/strong&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;最高&lt;/td&gt;
+      &lt;td&gt;809&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;標準&lt;/td&gt;
+      &lt;td&gt;845&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;低&lt;/td&gt;
+      &lt;td&gt;855&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;strong&gt;低&lt;/strong&gt;、&lt;strong&gt;標準&lt;/strong&gt;、&lt;strong&gt;最高&lt;/strong&gt;と三段階あったが、どれもスコアが1000に満たず&lt;strong&gt;動作困難&lt;/strong&gt;という評価だった。&lt;br /&gt;
+最低品質でもこの評価では、ゲーム本体をインストールした所でまともにプレイは出来ないだろう。&lt;br /&gt;
+無駄なあがきをする気力も起きない。&lt;/p&gt;
+
+&lt;p&gt;結果がわかっただけでも満足だ。もういい。&lt;br /&gt;
+速やかにベンチマークソフトをアンインストールしたが、&lt;br /&gt;
+そこからまたトラブルが発生してしまった。&lt;/p&gt;
+
+&lt;p&gt;次回へ続く&lt;/p&gt;
+</description>
+        <pubDate>Sat, 15 Aug 2015 19:25:27 +0900</pubDate>
+        <link>http://core.garbage-collection.net/2015/08/15/mba-windows8-1-install-03.html</link>
+        <guid isPermaLink="true">http://core.garbage-collection.net/2015/08/15/mba-windows8-1-install-03.html</guid>
+        
+        
+      </item>
     
       <item>
         <title>MacBook Air(mid2011) に Windows8.1 Proをインストール (1) -- インストール</title>
