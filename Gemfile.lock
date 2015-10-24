@@ -4,8 +4,6 @@ GEM
     autoprefixer-rails (2.2.0.20140804)
       execjs
     blankslate (2.1.2.4)
-    celluloid (0.16.1)
-      timers (~> 4.0.0)
     classifier-reborn (2.0.3)
       fast-stemmer (~> 1.0)
     coffee-script (2.4.1)
@@ -13,10 +11,9 @@ GEM
       execjs
     coffee-script-source (1.9.1.1)
     colorator (0.1)
-    execjs (2.5.2)
+    execjs (2.6.0)
     fast-stemmer (1.0.2)
     ffi (1.9.10)
-    hitimes (1.2.2)
     jekyll (2.5.3)
       classifier-reborn (~> 2.0)
       colorator (~> 0.1)
@@ -34,18 +31,17 @@ GEM
       toml (~> 0.1.0)
     jekyll-coffeescript (1.0.1)
       coffee-script (~> 2.2)
-    jekyll-gist (1.3.0)
+    jekyll-gist (1.3.5)
     jekyll-paginate (1.1.0)
     jekyll-sass-converter (1.3.0)
       sass (~> 3.2)
-    jekyll-sitemap (0.8.1)
-    jekyll-watch (1.2.1)
-      listen (~> 2.7)
+    jekyll-sitemap (0.9.0)
+    jekyll-watch (1.3.0)
+      listen (~> 3.0)
     json (1.8.3)
-    kramdown (1.8.0)
+    kramdown (1.9.0)
     liquid (2.6.3)
-    listen (2.10.1)
-      celluloid (~> 0.16.0)
+    listen (3.0.3)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
     mercenary (0.3.5)
@@ -73,7 +69,7 @@ GEM
       colorator
     octopress-escape-code (2.0.6)
       octopress-hooks (~> 2.0)
-    octopress-filters (1.3.3)
+    octopress-filters (1.4.0)
       jekyll
       octopress-hooks (~> 2.0)
       rubypants-unicode
@@ -85,7 +81,7 @@ GEM
     octopress-include-tag (1.1.3)
       jekyll (>= 2.0)
       octopress-tag-helpers (~> 1.0)
-    octopress-ink (1.2.0)
+    octopress-ink (1.2.1)
       jekyll (>= 2.0)
       octopress (~> 3.0)
       octopress-autoprefixer
@@ -109,20 +105,18 @@ GEM
     pygments.rb (0.6.3)
       posix-spawn (~> 0.3.6)
       yajl-ruby (~> 1.2.0)
-    rb-fsevent (0.9.5)
+    rb-fsevent (0.9.6)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
-    redcarpet (3.3.2)
+    redcarpet (3.3.3)
     rubypants (0.2.0)
     rubypants-unicode (0.2.5)
     safe_yaml (1.0.4)
-    sass (3.4.16)
-    timers (4.0.1)
-      hitimes
+    sass (3.4.19)
     titlecase (0.1.1)
     toml (0.1.2)
       parslet (~> 1.5.0)
-    uglifier (2.7.1)
+    uglifier (2.7.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
     yajl-ruby (1.2.1)
@@ -141,4 +135,4 @@ DEPENDENCIES
   octopress-solarized
 
 BUNDLED WITH
-   1.10.5
+   1.10.6
