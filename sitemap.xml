@@ -1,57 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://core.garbage-collection.net/2015/12/30/ipad-mini4.html</loc>
+    <loc>https://core.garbage-collection.net/2015/12/31/jekyll3-error.html</loc>
+    <lastmod>2015-12-31T22:15:46+09:00</lastmod>
+  </url>
+  <url>
+    <loc>https://core.garbage-collection.net/2015/12/30/ipad-mini4.html</loc>
     <lastmod>2015-12-30T20:09:10+09:00</lastmod>
   </url>
   <url>
-    <loc>http://core.garbage-collection.net/2015/11/07/elixir-healthplanet.html</loc>
+    <loc>https://core.garbage-collection.net/2015/11/07/elixir-healthplanet.html</loc>
     <lastmod>2015-11-07T16:25:35+09:00</lastmod>
   </url>
   <url>
-    <loc>http://core.garbage-collection.net/2015/11/02/how-to-start-phantomjs-in-elixir.html</loc>
+    <loc>https://core.garbage-collection.net/2015/11/02/how-to-start-phantomjs-in-elixir.html</loc>
     <lastmod>2015-11-02T00:06:17+09:00</lastmod>
   </url>
   <url>
-    <loc>http://core.garbage-collection.net/2015/10/24/elixir-for-loop.html</loc>
+    <loc>https://core.garbage-collection.net/2015/10/24/elixir-for-loop.html</loc>
     <lastmod>2015-10-24T14:51:37+09:00</lastmod>
   </url>
   <url>
-    <loc>http://core.garbage-collection.net/2015/08/15/mba-windows8-1-install-03.html</loc>
+    <loc>https://core.garbage-collection.net/2015/08/15/mba-windows8-1-install-03.html</loc>
     <lastmod>2015-08-15T19:25:27+09:00</lastmod>
   </url>
   <url>
-    <loc>http://core.garbage-collection.net/2015/08/11/mba-windows8-1-install-02.html</loc>
+    <loc>https://core.garbage-collection.net/2015/08/11/mba-windows8-1-install-02.html</loc>
     <lastmod>2015-08-11T00:35:45+09:00</lastmod>
   </url>
   <url>
-    <loc>http://core.garbage-collection.net/2015/08/08/mba-mid2011-install-windows8-1-pro.html</loc>
+    <loc>https://core.garbage-collection.net/2015/08/08/mba-mid2011-install-windows8-1-pro.html</loc>
     <lastmod>2015-08-08T23:53:13+09:00</lastmod>
   </url>
   <url>
-    <loc>http://core.garbage-collection.net/2015/08/08/octpress-post-error.html</loc>
+    <loc>https://core.garbage-collection.net/2015/08/08/octpress-post-error.html</loc>
     <lastmod>2015-08-08T23:04:36+09:00</lastmod>
   </url>
   <url>
-    <loc>http://core.garbage-collection.net/2015/06/30/octopress-plugin.html</loc>
+    <loc>https://core.garbage-collection.net/2015/06/30/octopress-plugin.html</loc>
     <lastmod>2015-06-30T22:05:01+09:00</lastmod>
   </url>
   <url>
-    <loc>http://core.garbage-collection.net/2015/06/29/jekyll-config.html</loc>
+    <loc>https://core.garbage-collection.net/2015/06/29/jekyll-config.html</loc>
     <lastmod>2015-06-29T00:49:27+09:00</lastmod>
   </url>
   <url>
-    <loc>http://core.garbage-collection.net/2015/06/28/octopress.html</loc>
+    <loc>https://core.garbage-collection.net/2015/06/28/octopress.html</loc>
     <lastmod>2015-06-28T23:07:01+09:00</lastmod>
   </url>
   <url>
-    <loc>http://core.garbage-collection.net/2015/06/28/renewal.html</loc>
+    <loc>https://core.garbage-collection.net/2015/06/28/renewal.html</loc>
     <lastmod>2015-06-28T19:55:52+09:00</lastmod>
   </url>
   <url>
-    <loc>http://core.garbage-collection.net/about/</loc>
+    <loc>https://core.garbage-collection.net/about/</loc>
   </url>
   <url>
-    <loc>http://core.garbage-collection.net/</loc>
+    <loc>https://core.garbage-collection.net/</loc>
   </url>
 </urlset>

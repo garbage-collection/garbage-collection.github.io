@@ -4,11 +4,66 @@
     <title>core dump</title>
     <description>&amp;copy; 2015 garbage-collection.net.
 </description>
-    <link>http://core.garbage-collection.net/</link>
-    <atom:link href="http://core.garbage-collection.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 30 Dec 2015 20:17:44 +0900</pubDate>
-    <lastBuildDate>Wed, 30 Dec 2015 20:17:44 +0900</lastBuildDate>
+    <link>https://core.garbage-collection.net/</link>
+    <atom:link href="https://core.garbage-collection.net/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Thu, 31 Dec 2015 23:14:29 +0900</pubDate>
+    <lastBuildDate>Thu, 31 Dec 2015 23:14:29 +0900</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
+    
+      <item>
+        <title>Jekyllをアップデートしたらエラーで動かなくなってしまった</title>
+        <description>&lt;p&gt;Jekyllが3.0にバージョンアップしていたので、年内にアップデートしておこうと思ったら動かなくなってしまった。  &lt;br /&gt;
+&lt;code&gt;bundle update&lt;/code&gt;後に&lt;code&gt;jekyll b&lt;/code&gt;した所、下のようなエラーが出た。&lt;/p&gt;
+
+&lt;figure class=&quot;code-highlight-figure&quot;&gt;&lt;div class=&quot;code-highlight&quot;&gt;&lt;pre class=&quot;code-highlight-pre&quot;&gt;&lt;div data-line=&quot;1&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;go&quot;&gt;       Deprecation: Collection#empty? should be called on the #docs array directly.&lt;/span&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;2&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;go&quot;&gt;                    Called by /Users/xxx/.rbenv/versions/2.3.0/lib/ruby/gems/2.3.0/gems/octopress-ink-1.2.1/lib/octopress-ink/plugin/bootstrap.rb:163:in `posts?&amp;#39;.&lt;/span&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;3&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;go&quot;&gt;       Deprecation: Collection#select should be called on the #docs array directly.&lt;/span&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;4&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;go&quot;&gt;                    Called by /Users/xxx/.rbenv/versions/2.3.0/lib/ruby/gems/2.3.0/gems/octopress-ink-1.2.1/lib/octopress-ink/plugin/bootstrap.rb:171:in `linkposts?&amp;#39;.&lt;/span&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;5&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;go&quot;&gt;  Liquid Exception: no implicit conversion of nil into String in _posts/2015-12-30-ipad-mini4.markdown&lt;/span&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;6&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;go&quot;&gt;  Liquid Exception: no implicit conversion of nil into String in sitemap.xml&lt;/span&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;7&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;go&quot;&gt;jekyll 3.0.1 | Error:  no implicit conversion of nil into String&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;
+
+&lt;p&gt;新年を最新バージョンで迎えたかったのに「えーー」という感じ。  &lt;br /&gt;
+Jekyllを元の&lt;code&gt;2.5.3&lt;/code&gt;に戻すとエラーは解消するので、jekyll 3.0の問題だろう。&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/octopress/ink/issues/64&quot;&gt;Jekyll 3 changed site.posts from an Array to a Collection which causes deprecation warning in Ink #64&lt;/a&gt;  &lt;br /&gt;
+GitHubにも上記のような報告が上がっているので、そのうち修正されるかもしれないが、  &lt;br /&gt;
+取り急ぎ解決できるよう方法はないかと少し試行錯誤してみる。&lt;/p&gt;
+
+&lt;p&gt;まず上記ページ内のリンク&lt;a href=&quot;https://github.com/jekyll/jekyll/pull/4055&quot;&gt;jekyll/jekyll#4055&lt;/a&gt;を見てみると、  &lt;br /&gt;
+やり取りの中で&lt;a href=&quot;https://camo.githubusercontent.com/41211a6d6c957e7210fbc663f8057b1e3280fd34/68747470733a2f2f6d656469612e67697068792e636f6d2f6d656469612f336f45647630334a417637344a364b4754532f67697068792e676966&quot;&gt;白人男性が大勝利のポーズを決めているGIF画像&lt;/a&gt;が貼ってあったので、  &lt;br /&gt;
+英語はよく分からないがパッチによって改善しているのかもしれない。  &lt;br /&gt;
+最新のリポジトリに取り込まれているかな、と思いGitHubから直接取得するようにGemfileを変更してみる。&lt;/p&gt;
+
+&lt;figure class=&quot;code-highlight-figure&quot;&gt;&lt;figcaption class=&quot;code-highlight-caption&quot;&gt;&lt;span class=&quot;code-highlight-caption-title&quot;&gt;Gemfile&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;code-highlight&quot;&gt;&lt;pre class=&quot;code-highlight-pre&quot;&gt;&lt;div data-line=&quot;1&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;n&quot;&gt;source&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;https://rubygems.org&amp;#39;&lt;/span&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;2&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt; &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;3&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;octopress&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;~&amp;gt; 3.0&amp;#39;&lt;/span&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;4&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# gem &amp;#39;jekyll&amp;#39;, &amp;#39;2.5.3&amp;#39; # =&amp;gt; エラーなし&lt;/span&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;5&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# gem &amp;#39;jekyll&amp;#39; # =&amp;gt; 3.0.1だとエラー&lt;/span&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;6&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;n&quot;&gt;gem&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;jekyll&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:github&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;jekyll/jekyll&amp;#39;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# =&amp;gt; GitHubから直接取得&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;
+
+&lt;p&gt;改めて&lt;code&gt;bundle update&lt;/code&gt;し&lt;code&gt;jekyll b&lt;/code&gt;を実行したところまた別のエラーが。&lt;/p&gt;
+
+&lt;figure class=&quot;code-highlight-figure&quot;&gt;&lt;div class=&quot;code-highlight&quot;&gt;&lt;pre class=&quot;code-highlight-pre&quot;&gt;&lt;div data-line=&quot;1&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;go&quot;&gt;  Liquid Exception: Liquid syntax error: Unknown tag &amp;#39;css_asset_tag&amp;#39; in _layouts/default.html&lt;/span&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;2&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;go&quot;&gt;jekyll 3.0.1 | Error:  Liquid syntax error: Unknown tag &amp;#39;css_asset_tag&amp;#39;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;
+
+&lt;p&gt;ダメか。Syntax Highlightingの為に&lt;code&gt;octopress-solarized&lt;/code&gt;を導入して&lt;code&gt;css_asset_tag&lt;/code&gt;を設置していたのだが、  &lt;br /&gt;
+このタグをうまく処理できないらしい。&lt;/p&gt;
+
+&lt;p&gt;これもGitHubに同じ症状の人が報告を上げていて、改善した様子がない。    &lt;br /&gt;
+&lt;a href=&quot;https://github.com/octopress/solarized/issues/6&quot;&gt;jekyll serve failing with after following Installation #6&lt;/a&gt;  &lt;br /&gt;
+リンク先の「結局&lt;a href=&quot;http://gohugo.io&quot;&gt;Hugo&lt;/a&gt;に移行した」という身も蓋もない解決策は置いておいて、  &lt;br /&gt;
+「2.5.xにダウングレードしたら期待通り動いたよ」というのが落としどころな気がしたので、  &lt;br /&gt;
+僕もひとまずJekyllのバージョンを元に戻した。&lt;/p&gt;
+
+&lt;p&gt;今回関連エラーを調べていたら8月ぐらいから似た症状の報告があり、  &lt;br /&gt;
+なかなか解消しないようなので、Hugoへの移行も少し考えておこうと思う。&lt;/p&gt;
+</description>
+        <pubDate>Thu, 31 Dec 2015 22:15:46 +0900</pubDate>
+        <link>https://core.garbage-collection.net/2015/12/31/jekyll3-error.html</link>
+        <guid isPermaLink="true">https://core.garbage-collection.net/2015/12/31/jekyll3-error.html</guid>
+        
+        
+      </item>
     
       <item>
         <title>iPad mini 4 を購入した</title>
@@ -69,8 +124,8 @@ iOS向けのMarkdownエディタないかなと探していた所、&lt;a href=&
 それは次回に。&lt;/p&gt;
 </description>
         <pubDate>Wed, 30 Dec 2015 20:09:10 +0900</pubDate>
-        <link>http://core.garbage-collection.net/2015/12/30/ipad-mini4.html</link>
-        <guid isPermaLink="true">http://core.garbage-collection.net/2015/12/30/ipad-mini4.html</guid>
+        <link>https://core.garbage-collection.net/2015/12/30/ipad-mini4.html</link>
+        <guid isPermaLink="true">https://core.garbage-collection.net/2015/12/30/ipad-mini4.html</guid>
         
         
       </item>
@@ -194,8 +249,8 @@ iOS向けのMarkdownエディタないかなと探していた所、&lt;a href=&
 
 </description>
         <pubDate>Sat, 07 Nov 2015 16:25:35 +0900</pubDate>
-        <link>http://core.garbage-collection.net/2015/11/07/elixir-healthplanet.html</link>
-        <guid isPermaLink="true">http://core.garbage-collection.net/2015/11/07/elixir-healthplanet.html</guid>
+        <link>https://core.garbage-collection.net/2015/11/07/elixir-healthplanet.html</link>
+        <guid isPermaLink="true">https://core.garbage-collection.net/2015/11/07/elixir-healthplanet.html</guid>
         
         
       </item>
@@ -331,8 +386,8 @@ Driverは&lt;a href=&quot;http://phantomjs.org&quot;&gt;PhantomJS&lt;/a&gt;&lt;s
 &lt;/div&gt;
 </description>
         <pubDate>Mon, 02 Nov 2015 00:06:17 +0900</pubDate>
-        <link>http://core.garbage-collection.net/2015/11/02/how-to-start-phantomjs-in-elixir.html</link>
-        <guid isPermaLink="true">http://core.garbage-collection.net/2015/11/02/how-to-start-phantomjs-in-elixir.html</guid>
+        <link>https://core.garbage-collection.net/2015/11/02/how-to-start-phantomjs-in-elixir.html</link>
+        <guid isPermaLink="true">https://core.garbage-collection.net/2015/11/02/how-to-start-phantomjs-in-elixir.html</guid>
         
         
       </item>
@@ -487,8 +542,8 @@ take/2で何個取得するのが明示してあるものが多くエラー解�
 
 </description>
         <pubDate>Sat, 24 Oct 2015 14:51:37 +0900</pubDate>
-        <link>http://core.garbage-collection.net/2015/10/24/elixir-for-loop.html</link>
-        <guid isPermaLink="true">http://core.garbage-collection.net/2015/10/24/elixir-for-loop.html</guid>
+        <link>https://core.garbage-collection.net/2015/10/24/elixir-for-loop.html</link>
+        <guid isPermaLink="true">https://core.garbage-collection.net/2015/10/24/elixir-for-loop.html</guid>
         
         
       </item>
@@ -621,8 +676,8 @@ Macのファンがめちゃくちゃ回り、ベンチのムービーがカク�
 &lt;p&gt;次回へ続く&lt;/p&gt;
 </description>
         <pubDate>Sat, 15 Aug 2015 19:25:27 +0900</pubDate>
-        <link>http://core.garbage-collection.net/2015/08/15/mba-windows8-1-install-03.html</link>
-        <guid isPermaLink="true">http://core.garbage-collection.net/2015/08/15/mba-windows8-1-install-03.html</guid>
+        <link>https://core.garbage-collection.net/2015/08/15/mba-windows8-1-install-03.html</link>
+        <guid isPermaLink="true">https://core.garbage-collection.net/2015/08/15/mba-windows8-1-install-03.html</guid>
         
         
       </item>
@@ -771,8 +826,8 @@ Macのファンがめちゃくちゃ回り、ベンチのムービーがカク�
 &lt;p&gt;次回へ&lt;/p&gt;
 </description>
         <pubDate>Tue, 11 Aug 2015 00:35:45 +0900</pubDate>
-        <link>http://core.garbage-collection.net/2015/08/11/mba-windows8-1-install-02.html</link>
-        <guid isPermaLink="true">http://core.garbage-collection.net/2015/08/11/mba-windows8-1-install-02.html</guid>
+        <link>https://core.garbage-collection.net/2015/08/11/mba-windows8-1-install-02.html</link>
+        <guid isPermaLink="true">https://core.garbage-collection.net/2015/08/11/mba-windows8-1-install-02.html</guid>
         
         
       </item>
@@ -822,8 +877,8 @@ Windows10と同じ結果になったらどうしようと思ったが、さす�
 
 </description>
         <pubDate>Sat, 08 Aug 2015 23:53:13 +0900</pubDate>
-        <link>http://core.garbage-collection.net/2015/08/08/mba-mid2011-install-windows8-1-pro.html</link>
-        <guid isPermaLink="true">http://core.garbage-collection.net/2015/08/08/mba-mid2011-install-windows8-1-pro.html</guid>
+        <link>https://core.garbage-collection.net/2015/08/08/mba-mid2011-install-windows8-1-pro.html</link>
+        <guid isPermaLink="true">https://core.garbage-collection.net/2015/08/08/mba-mid2011-install-windows8-1-pro.html</guid>
         
         
       </item>
@@ -840,8 +895,8 @@ $ gem cleanup をしたら解決した。&lt;/p&gt;
 
 </description>
         <pubDate>Sat, 08 Aug 2015 23:04:36 +0900</pubDate>
-        <link>http://core.garbage-collection.net/2015/08/08/octpress-post-error.html</link>
-        <guid isPermaLink="true">http://core.garbage-collection.net/2015/08/08/octpress-post-error.html</guid>
+        <link>https://core.garbage-collection.net/2015/08/08/octpress-post-error.html</link>
+        <guid isPermaLink="true">https://core.garbage-collection.net/2015/08/08/octpress-post-error.html</guid>
         
         
       </item>
@@ -889,30 +944,8 @@ styleを指定するとSyntaxHighlightが有効になる。&lt;/p&gt;
 
 </description>
         <pubDate>Tue, 30 Jun 2015 22:05:01 +0900</pubDate>
-        <link>http://core.garbage-collection.net/2015/06/30/octopress-plugin.html</link>
-        <guid isPermaLink="true">http://core.garbage-collection.net/2015/06/30/octopress-plugin.html</guid>
-        
-        
-      </item>
-    
-      <item>
-        <title>Jekyll設定</title>
-        <description>&lt;p&gt;JekyllでKramdownのオプション設定する&lt;/p&gt;
-
-&lt;figure class=&quot;code-highlight-figure&quot;&gt;&lt;div class=&quot;code-highlight&quot;&gt;&lt;pre class=&quot;code-highlight-pre&quot;&gt;&lt;div data-line=&quot;1&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# _config.yml&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;2&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt; &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;3&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# Site settings&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;4&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;timezone&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;Asia/Tokyo&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;5&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt; &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;6&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# Build settings&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;7&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;markdown&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;kramdown&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;8&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;kramdown&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;9&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;  &lt;span class=&quot;l-Scalar-Plain&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;GFM&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;10&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;  &lt;span class=&quot;l-Scalar-Plain&quot;&gt;syntax_highlighter&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;rouge&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;11&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;  &lt;span class=&quot;l-Scalar-Plain&quot;&gt;syntax_highlighter_opts&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p-Indicator&quot;&gt;&amp;#x7b;&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;inline_theme&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;monokai&lt;/span&gt; &lt;span class=&quot;p-Indicator&quot;&gt;&amp;#x7d;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;
-
-</description>
-        <pubDate>Mon, 29 Jun 2015 00:49:27 +0900</pubDate>
-        <link>http://core.garbage-collection.net/2015/06/29/jekyll-config.html</link>
-        <guid isPermaLink="true">http://core.garbage-collection.net/2015/06/29/jekyll-config.html</guid>
+        <link>https://core.garbage-collection.net/2015/06/30/octopress-plugin.html</link>
+        <guid isPermaLink="true">https://core.garbage-collection.net/2015/06/30/octopress-plugin.html</guid>
         
         
       </item>
