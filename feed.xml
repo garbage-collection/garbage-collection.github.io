@@ -6,9 +6,145 @@
 </description>
     <link>https://core.garbage-collection.net/</link>
     <atom:link href="https://core.garbage-collection.net/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 31 Dec 2015 23:14:29 +0900</pubDate>
-    <lastBuildDate>Thu, 31 Dec 2015 23:14:29 +0900</lastBuildDate>
+    <pubDate>Sat, 02 Jan 2016 23:58:49 +0900</pubDate>
+    <lastBuildDate>Sat, 02 Jan 2016 23:58:49 +0900</lastBuildDate>
     <generator>Jekyll v2.5.3</generator>
+    
+      <item>
+        <title>[1Writer]JavaScriptで機能拡張できるMarkdown対応エディタ</title>
+        <description>&lt;p&gt;&lt;a href=&quot;/2015/12/30/ipad-mini4.html&quot;&gt;iPad mini 4を購入して&lt;/a&gt;から折角なので、  &lt;br /&gt;
+文章も作成できないかとMarkdown対応のエディタを探していた。&lt;/p&gt;
+
+&lt;p&gt;条件は以下3つ&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Markdown対応&lt;/li&gt;
+  &lt;li&gt;SplitViewに対応している&lt;/li&gt;
+  &lt;li&gt;スクリプトで機能を拡張できる&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;候補として下記2つのエディタを見つけた。&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Editorial(&lt;a href=&quot;http://omz-software.com/editorial/&quot;&gt;公式サイト&lt;/a&gt;)  &lt;br /&gt;
+  &lt;a href=&quot;https://geo.itunes.apple.com/jp/app/editorial/id673907758?mt=8&amp;amp;at=1001laxo&quot; style=&quot;display:inline-block;overflow:hidden;background:url(http://linkmaker.itunes.apple.com/images/badges/ja-jp/badge_appstore-lrg.svg) no-repeat;width:165px;height:40px;&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;1Writer(&lt;a href=&quot;http://1writerapp.com&quot;&gt;公式サイト&lt;/a&gt;)  &lt;br /&gt;
+  &lt;a href=&quot;https://geo.itunes.apple.com/jp/app/1writer-note-taking-writing/id680469088?mt=8&amp;amp;at=1001laxo&quot; style=&quot;display:inline-block;overflow:hidden;background:url(http://linkmaker.itunes.apple.com/images/badges/ja-jp/badge_appstore-lrg.svg) no-repeat;width:165px;height:40px;&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;EditorialはPython組み込みのエディタで使いこなせば&lt;a href=&quot;http://omz-software.com/editorial/docs/ios/index.html&quot;&gt;様々な処理&lt;/a&gt;を実行できる。  &lt;br /&gt;
+1WriterはJavaScriptで&lt;a href=&quot;http://1writerapp.com/docs/js&quot;&gt;機能が拡張できる&lt;/a&gt;エディタだがEditorialほど操作できるオブジェクトはない。&lt;/p&gt;
+
+&lt;p&gt;これを機にEditorialでPythonを始めてみるかと思ったが、  &lt;br /&gt;
+&lt;a href=&quot;https://www.macstories.net/ios/markdown-and-automation-experiments-with-1writer/&quot;&gt;Editorialを愛用しているという人&lt;/a&gt;が、EditorialはまだiOS9(SplitView)には対応していない、  &lt;br /&gt;
+対応するまでは1Writerを使ってみるよ、とSplitViewのスクリーンショット付きで紹介していたので僕も1Writerを選択することにした。600円也。&lt;/p&gt;
+
+&lt;p&gt;今回の記事は1Writerを使って書いているが、Huluで「ガキの使い」でも見てみるかとSplitViewを使ってみたのが下の画面。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://dl.dropbox.com/s/rq8herl0hgdx4fl/IMG_0012.PNG?dl=0&quot; alt=&quot;SplitView利用中&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;次に実際にJavaScriptで何か「アクション(機能拡張)」を書いてみる。  &lt;br /&gt;
+このサイトはOctopressを使っているのだが、記事を作る場合に&lt;code&gt;octopress new draft &quot;記事タイトル&quot;&lt;/code&gt;を実行して下書きを生成しているので、それと同じ様な働きをする「アクション」を書いてみる。(&lt;a href=&quot;http://1writerapp.com/docs/js&quot;&gt;参考&lt;/a&gt;)&lt;/p&gt;
+
+&lt;figure class=&quot;code-highlight-figure&quot;&gt;&lt;figcaption class=&quot;code-highlight-caption&quot;&gt;&lt;span class=&quot;code-highlight-caption-title&quot;&gt;名前: octopress new draft&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;code-highlight&quot;&gt;&lt;pre class=&quot;code-highlight-pre&quot;&gt;&lt;div data-line=&quot;1&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;nx&quot;&gt;ui&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;input&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;input DRAFT Title&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;val&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;&amp;#x7b;&lt;/span&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;2&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;	&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;val&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;&amp;#x7b;&lt;/span&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;3&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;		&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;title&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;val&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;4&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;		&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;file_name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;val&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/[\s　]+/g&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;-&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;5&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt; &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;6&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;nx&quot;&gt;header&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;---\n\&lt;/span&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;7&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;s2&quot;&gt;layout: post\n\&lt;/span&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;8&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;s2&quot;&gt;title: \&amp;quot;&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;title&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;\&amp;quot;\n\&lt;/span&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;9&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;s2&quot;&gt;---\n\&lt;/span&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;10&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;s2&quot;&gt;\n&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;11&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;		&lt;span class=&quot;nx&quot;&gt;editor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;newFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;header&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;file_name&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;.markdown&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;12&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;	&lt;span class=&quot;p&quot;&gt;&amp;#x7d;&lt;/span&gt;
+&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;13&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;p&quot;&gt;&amp;#x7d;);&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;
+
+&lt;p&gt;メニューの「アクション追加」からスクリプト編集画面を開き上記スクリプトを入力する。&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://dl.dropbox.com/s/razw9h3tk4dgbx4/IMG_0011.PNG?dl=0&quot; alt=&quot;スクリプト編集画面&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;作ったアクション「octopress new draft」選択&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://dl.dropbox.com/s/hb97mhhedjavz6q/IMG_0008.PNG?dl=0&quot; alt=&quot;スクリプト選択画面&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;タイトル入力画面が表示されるので記事タイトルを入力&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://dl.dropbox.com/s/bta680gk4rb5trs/IMG_0009.PNG?dl=0&quot; alt=&quot;タイトル入力画面&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;入力したタイトルに基づき下書きが自動作成される&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://dl.dropbox.com/s/rnrv0juzpoxcw2f/IMG_0010.PNG?dl=0&quot; alt=&quot;新規ファイル編集画面&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;ここで問題が。  &lt;br /&gt;
+1WriterはDropboxと同期できるので、マウントしたDropboxフォルダにファイルを作成したいのだが、  &lt;br /&gt;
+どうも失敗してしまう。まず「アクション」でファイル作成する&lt;code&gt;editor.newFile([text], [name])&lt;/code&gt;は&lt;code&gt;name&lt;/code&gt;にファイル名だけ指定するとローカルの「Documents」フォルダにファイルを作る。  &lt;br /&gt;
+そしてファイル名にDropboxのパスも含めて指定すると失敗してしまう。&lt;/p&gt;
+
+&lt;p&gt;指定の仕方がおかしいのかもしれないし、  &lt;br /&gt;
+既存のファイルを開く&lt;code&gt;editor.openFile(path, [mode])&lt;/code&gt;は&lt;code&gt;path&lt;/code&gt;と記載されているが、  &lt;br /&gt;
+&lt;code&gt;editor.newFile([text], [name])&lt;/code&gt;は&lt;code&gt;name&lt;/code&gt;なのでローカルのみの対応なのかもしれない。&lt;/p&gt;
+
+&lt;p&gt;ローカルに作ったファイルをDropboxに移動すればMacと共有できるので、  &lt;br /&gt;
+しばらくこれでやっていこうと思う。&lt;/p&gt;
+</description>
+        <pubDate>Sat, 02 Jan 2016 23:55:58 +0900</pubDate>
+        <link>https://core.garbage-collection.net/2016/01/02/1writer.html</link>
+        <guid isPermaLink="true">https://core.garbage-collection.net/2016/01/02/1writer.html</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Mackerel Workflow</title>
+        <description>&lt;p&gt;大まかな流れわかりやすい&lt;br /&gt;
+&lt;a href=&quot;http://blog.a-know.me/entry/2015/05/12/215236&quot;&gt;Mackerel に自分の Mac を監視させてみた(えいのうにっき)&lt;/a&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Sakura VPSに mackerel-agentインストール&lt;br /&gt;
+&lt;a href=&quot;http://help-ja.mackerel.io/entry/howto/install-agent/deb&quot;&gt;debパッケージでmackerel-agentをインストールする&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;SlackにMackerel接続&lt;br /&gt;
+&lt;a href=&quot;http://help-ja.mackerel.io/entry/howto/alerts/slack&quot;&gt;Slackにアラートを通知する&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Sakura VPSにMackerel CLIインストール&lt;br /&gt;
+&lt;a href=&quot;http://help-ja.mackerel.io/entry/advanced/cli&quot;&gt;CLIツール mkr を使う&lt;/a&gt;&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;figure class=&quot;code-highlight-figure&quot;&gt;&lt;div class=&quot;code-highlight&quot;&gt;&lt;pre class=&quot;code-highlight-pre&quot;&gt;&lt;div data-line=&quot;1&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;go&quot;&gt;mackerel fetch -n foo.bar ID&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://help-ja.mackerel.io/entry/spec/metrics&quot;&gt;標準メトリック&lt;/a&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Hubotをインストール&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Workflow - Slack - mcr cli呼び出し&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+</description>
+        <pubDate>Sat, 02 Jan 2016 11:15:21 +0900</pubDate>
+        <link>https://core.garbage-collection.net/2016/01/02/mackerel-workflow.html</link>
+        <guid isPermaLink="true">https://core.garbage-collection.net/2016/01/02/mackerel-workflow.html</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>Sakura VPSにMackerelをインストール</title>
+        <description>&lt;p&gt;前回Sakura VPSにMackerelを入れて監視してみたい&lt;/p&gt;
+
+</description>
+        <pubDate>Sat, 02 Jan 2016 00:22:06 +0900</pubDate>
+        <link>https://core.garbage-collection.net/2016/01/02/mackerel.html</link>
+        <guid isPermaLink="true">https://core.garbage-collection.net/2016/01/02/mackerel.html</guid>
+        
+        
+      </item>
     
       <item>
         <title>Jekyllをアップデートしたらエラーで動かなくなってしまった</title>
@@ -83,6 +219,72 @@ GitHubにも上記のような報告が上がっているので、そのうち�
 &lt;p&gt;とあってKindle for Macではクラウドからダウンロードして閲覧することができない。  &lt;br /&gt;
 ※ローカルの所定のフォルダにファイルを移動すれば見れないことはない&lt;/p&gt;
 
+&lt;p&gt;O’reillyやPacktなどで購入した電子書籍を、パーソナル・ドキュメントへ送信する設定にしているのだが、  &lt;br /&gt;
+わざわざ各サイトのアカウント画面から、購入した書籍を  &lt;br /&gt;
+ダウンロードしてKindle for Macにコピーするのは億劫に思っていた。  &lt;br /&gt;
+iPhone6は持っているが、Kindle for iPhoneだと画面の大きさから長時間の閲覧には窮屈だしね。&lt;/p&gt;
+
+&lt;h2 id=&quot;ipad-mini-4-fire&quot;&gt;iPad mini 4 の発売とFireタブレット&lt;/h2&gt;
+
+&lt;p&gt;そんな時に9月にiPad mini 4が発売され強く惹かれたが、なかなか購入に踏み切れないでいた。  &lt;br /&gt;
+昔iPad mini2を持っていて、&lt;a href=&quot;https://itunes.apple.com/jp/app/kindle-ren-qino-xiao-shuoyamanga/id302584613?mt=8&quot;&gt;Kindle&lt;/a&gt;,&lt;a href=&quot;https://itunes.apple.com/jp/app/hulu-furu/id549416492?mt=8&quot;&gt;Hulu&lt;/a&gt;,&lt;a href=&quot;https://itunes.apple.com/jp/app/niconico/id307764057?mt=8&quot;&gt;ニコニコ動画&lt;/a&gt;などのコンテンツViewerとして非常に優れているのはわかっていたが、  &lt;br /&gt;
+閲覧用としてだけで4〜5万も出せないよな、という感じ。&lt;/p&gt;
+
+&lt;p&gt;しばらく迷っているうちに&lt;a href=&quot;http://www.amazon.co.jp/b/?ie=UTF8&amp;amp;node=3913179051&quot;&gt;Fireタブレットが「プライム会員」だと4,980円(クーポン使用時)&lt;/a&gt;で安く売り出されたので、  &lt;br /&gt;
+いっそプライム会員になって買ってしまおうかとFireタブレットに気持ちが傾いていた。  &lt;br /&gt;
+気になってネット検索してみると割り切って使えばコスパ最高という上々の評価で申し分ない。&lt;/p&gt;
+
+&lt;h2 id=&quot;section&quot;&gt;買った後に使い続けるか&lt;/h2&gt;
+
+&lt;p&gt;問題はこう言った「コスパ最高」みたいなものを買った後の自分の態度にある。  &lt;br /&gt;
+いつものパターンだと使っていく中で細かい不満が出てきて利用頻度が落ちて行き、  &lt;br /&gt;
+「たいして使わないものにお金を払った」という後ろめたさから、だんだんと買ったものを遠ざけてしまうということだ。  &lt;br /&gt;
+Fireタブレットの場合だと1024 x 600の解像度や10.6mmの厚さに不安を覚える。&lt;/p&gt;
+
+&lt;p&gt;家電量販店で触ったiPad mini 4の厚さ6.1mmを知ってしまうと、  &lt;br /&gt;
+何かの折に思い出して、不満を募らせることになるだろう。  &lt;br /&gt;
+全くターゲットの違う製品だと頭ではわかっていても。&lt;/p&gt;
+
+&lt;p&gt;結局の所「割り切れてない」という事に尽きる。&lt;/p&gt;
+
+&lt;h2 id=&quot;section-1&quot;&gt;リセットしたつもりが&lt;/h2&gt;
+
+&lt;p&gt;一旦気持ちをリセットし、またiPad mini 4を買うか、そもそも必要か?と逡巡していたところ、  &lt;br /&gt;
+Huluで&lt;a href=&quot;http://blog.hulu.jp/2015/12/02/gakinotsukai/&quot;&gt;「笑ってはいけない」歴代シリーズ配信&lt;/a&gt;のニュースを見て、我慢できずにiPad mini 4を買ってしまった。  &lt;br /&gt;
+あれだけ迷っといてこんな理由で買ってしまうとは。&lt;/p&gt;
+
+&lt;p&gt;年末の&lt;a href=&quot;http://www.ntv.co.jp/gaki/special_2015.html&quot;&gt;「絶対に笑ってはいけない名探偵24時！」&lt;/a&gt;までに、毎日ちょっとずつ「笑ってはいけない」を復習している。  &lt;br /&gt;
+二週間ほど使ってみたが、通勤時間の車内や寝転がりながらコンテンツを閲覧するのに本当に最適だと思う。&lt;/p&gt;
+
+&lt;p&gt;ただ閲覧目的だけではもったいないので、ちょっとした文章を作るのに  &lt;br /&gt;
+iOS向けのMarkdownエディタないかなと探していた所、&lt;a href=&quot;https://itunes.apple.com/jp/app/1writer-note-taking-writing/id680469088?mt=8&quot;&gt;1Writer&lt;/a&gt;というものを見つけた。  &lt;br /&gt;
+それは次回に。&lt;/p&gt;
+</description>
+        <pubDate>Wed, 30 Dec 2015 20:17:44 +0900</pubDate>
+        <link>https://core.garbage-collection.net/2015/12/30/ipad-mini4.html</link>
+        <guid isPermaLink="true">https://core.garbage-collection.net/2015/12/30/ipad-mini4.html</guid>
+        
+        
+      </item>
+    
+      <item>
+        <title>iPad mini 4 を購入した</title>
+        <description>&lt;h2 id=&quot;viewer&quot;&gt;コンテンツViewerを求めて&lt;/h2&gt;
+
+&lt;p&gt;Amazonには&lt;a href=&quot;http://www.amazon.co.jp/gp/help/customer/display.html?nodeId=200767340&quot;&gt;Kindleパーソナル・ドキュメントサービス&lt;/a&gt;というのがあって、  &lt;br /&gt;
+クラウド上にメールで送信したコンテンツを保存しておけるサービスがある。が、&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Kindle端末、Fireタブレット、Kindle for iPad/iPhone、  &lt;br /&gt;
+およびKindle for Androidにパーソナル・ドキュメントを送信すれば、  &lt;br /&gt;
+その端末で、いつでもどこででも読むことができます。  &lt;br /&gt;
+なお、これ以外のKindle無料アプリ（Kindle for PC、Kindle for Macなど）は  &lt;br /&gt;
+パーソナル・ドキュメントに対応していませんのでご了承ください。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;とあってKindle for Macではクラウドからダウンロードして閲覧することができない。  &lt;br /&gt;
+※ローカルの所定のフォルダにファイルを移動すれば見れないことはない&lt;/p&gt;
+
 &lt;p&gt;O’reillyやPacktなどで購入した電子書籍を、パーソナル・ドキュメントへ送信する設定にしているのだが、 &lt;br /&gt;
 わざわざ各サイトのアカウント画面から、購入した書籍をMacにダウンロードしてKindle for Macにコピーするのは億劫に思っていた。  &lt;br /&gt;
 iPhone6は持っているが、Kindle for iPhoneだと画面の大きさから長時間の閲覧には窮屈だしね。&lt;/p&gt;
@@ -131,821 +333,89 @@ iOS向けのMarkdownエディタないかなと探していた所、&lt;a href=&
       </item>
     
       <item>
-        <title>[Elixir]HealthPlanetのデータを取得する</title>
-        <description>&lt;p&gt;&lt;a href=&quot;/2015/11/02/how-to-start-phantomjs-in-elixir.html&quot;&gt;前回&lt;/a&gt;PhantomJSを使ってHealthPlanetにログインしユーザ名を取得するサンプルを作ってみた。&lt;br /&gt;
-今回は&lt;a href=&quot;https://www.healthplanet.jp&quot;&gt;HealthPlanet&lt;/a&gt;で提供されている&lt;a href=&quot;https://www.healthplanet.jp/apis/api.html&quot;&gt;体組成計データを取得するAPI&lt;/a&gt;を使ったプログラムを作ってみたい。&lt;/p&gt;
+        <title>iPad mini 4 + Coda で「さくらVPS」にSSH接続</title>
+        <description>&lt;p&gt;&lt;a href=&quot;&quot;&gt;前回&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;参考:&lt;a href=&quot;http://www.mirandora.com/?p=808&quot;&gt;体組成データを取得する。&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;section&quot;&gt;したいこと&lt;/h2&gt;
 
-&lt;h2 id=&quot;section&quot;&gt;準備&lt;/h2&gt;
+&lt;h2 id=&quot;section-1&quot;&gt;検討&lt;/h2&gt;
 
-&lt;p&gt;まずは&lt;code&gt;mix&lt;/code&gt;でプロジェクトを作成。今回は&lt;code&gt;helpget&lt;/code&gt;という名前にします&lt;/p&gt;
+&lt;h2 id=&quot;section-2&quot;&gt;準備&lt;/h2&gt;
 
-&lt;figure class=&quot;code-highlight-figure&quot;&gt;&lt;div class=&quot;code-highlight&quot;&gt;&lt;pre class=&quot;code-highlight-pre&quot;&gt;&lt;div data-line=&quot;1&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; mix new hlpget&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;
-
-&lt;p&gt;続いて各種設定。ライブラリの指定と、HoundのDriverにPhantomJSを指定。&lt;/p&gt;
-
-&lt;figure class=&quot;code-highlight-figure&quot;&gt;&lt;figcaption class=&quot;code-highlight-caption&quot;&gt;&lt;span class=&quot;code-highlight-caption-title&quot;&gt;mix.exs&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;code-highlight&quot;&gt;&lt;pre class=&quot;code-highlight-pre&quot;&gt;&lt;div data-line=&quot;1&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;kd&quot;&gt;defmodule&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Hlpget.Mixfile&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;2&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;  &lt;span class=&quot;kn&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Mix.Project&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;3&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt; &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;4&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;  &lt;span class=&quot;kd&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;project&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;5&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;app&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:hlpget&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;6&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;     &lt;span class=&quot;ss&quot;&gt;version&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;0.0.1&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;7&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;     &lt;span class=&quot;ss&quot;&gt;elixir&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;~&amp;gt; 1.1&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;8&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;     &lt;span class=&quot;ss&quot;&gt;build_embedded&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Mix&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;env&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:prod&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;9&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;     &lt;span class=&quot;ss&quot;&gt;start_permanent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Mix&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;env&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:prod&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;10&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;     &lt;span class=&quot;ss&quot;&gt;deps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;deps&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;11&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;12&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt; &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;13&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;  &lt;span class=&quot;kd&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;application&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;14&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;applications&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:logger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:httpoison&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:hound&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;15&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;16&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt; &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;17&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;  &lt;span class=&quot;kd&quot;&gt;defp&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;deps&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;18&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;19&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;      &lt;span class=&quot;p&quot;&gt;&amp;#x7b;&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:httpoison&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;~&amp;gt; 0.7.4&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;#x7d;,&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;20&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;      &lt;span class=&quot;p&quot;&gt;&amp;#x7b;&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:floki&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;~&amp;gt; 0.6&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;#x7d;,&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;21&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;      &lt;span class=&quot;p&quot;&gt;&amp;#x7b;&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:hound&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;~&amp;gt; 0.7.2&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;#x7d;,&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;22&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;      &lt;span class=&quot;p&quot;&gt;&amp;#x7b;&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:oauth2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;~&amp;gt; 0.5&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;#x7d;&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;23&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;24&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;25&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;
-
-&lt;figure class=&quot;code-highlight-figure&quot;&gt;&lt;figcaption class=&quot;code-highlight-caption&quot;&gt;&lt;span class=&quot;code-highlight-caption-title&quot;&gt;config/config.exs&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;code-highlight&quot;&gt;&lt;pre class=&quot;code-highlight-pre&quot;&gt;&lt;div data-line=&quot;1&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:hound&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;driver&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;phantomjs&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;host&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;http://localhost&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5555&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;
-
-&lt;h2 id=&quot;section-1&quot;&gt;プログラムを書く&lt;/h2&gt;
-
-&lt;p&gt;それでは「測定日付が”2015/07/01 00:00:00”から”2015/09/30 12:59:59”までの測定データ」をJSON形式で取得してみます。&lt;br /&gt;
-前回のプログラムにOAuth関連のコードが追加された感じですね。&lt;/p&gt;
-
-&lt;figure class=&quot;code-highlight-figure&quot;&gt;&lt;figcaption class=&quot;code-highlight-caption&quot;&gt;&lt;span class=&quot;code-highlight-caption-title&quot;&gt;lib/hlpget.ex&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;code-highlight&quot;&gt;&lt;pre class=&quot;code-highlight-pre&quot;&gt;&lt;div data-line=&quot;1&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;kd&quot;&gt;defmodule&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Hlpget&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;2&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;  &lt;span class=&quot;kn&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Hound.Helpers&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;3&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt; &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;4&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;  &lt;span class=&quot;kd&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;start&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;5&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;OAuth&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;6&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;      &lt;span class=&quot;ss&quot;&gt;strategy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;OAuth&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Strategy.AuthCode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;7&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;      &lt;span class=&quot;ss&quot;&gt;client_id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;CLIENT_ID.apps.healthplanet.jp&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# 適宜置き換えてね&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;8&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;      &lt;span class=&quot;ss&quot;&gt;client_secret&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;CLIENT_SECRET&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# 適宜置き換えてね&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;9&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;      &lt;span class=&quot;ss&quot;&gt;site&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;https://www.healthplanet.jp/&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;10&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;      &lt;span class=&quot;ss&quot;&gt;authorize_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;https://www.healthplanet.jp/oauth/auth&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;11&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;      &lt;span class=&quot;ss&quot;&gt;token_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;https://www.healthplanet.jp/oauth/token&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;12&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;      &lt;span class=&quot;ss&quot;&gt;redirect_uri&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;https://www.healthplanet.jp/success.html&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;13&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;14&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt; &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;15&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;c1&quot;&gt;# HealthPlanet&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;16&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;ユーザ名&amp;quot;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# 適宜置き換えてね&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;17&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;n&quot;&gt;passwd&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;パスワード&amp;quot;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# 適宜置き換えてね&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;18&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt; &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;19&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;nc&quot;&gt;Hound&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;start_session&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;20&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt; &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;21&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;c1&quot;&gt;# 認証&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;22&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;nc&quot;&gt;OAuth&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;authorize_url!&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&amp;#x7b;&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:scope&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;innerscan&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;#x7d;])&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;navigate_to&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;23&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;n&quot;&gt;find_element&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;loginId&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fill_field&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;24&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;n&quot;&gt;find_element&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;passwd&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fill_field&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;passwd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;25&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;n&quot;&gt;find_element&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;login.LoginForm&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;submit_element&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;26&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt; &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;27&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;c1&quot;&gt;# 許可&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;28&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;n&quot;&gt;execute_script&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;goSubmit(true);&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;29&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;n&quot;&gt;find_element&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;common.SiteInfoBaseForm&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;submit_element&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;30&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt; &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;31&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;c1&quot;&gt;# token/expire/refresh_tokenを取得&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;32&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;n&quot;&gt;code&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Regex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sx&quot;&gt;~r/code=/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;current_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&amp;gt;&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;List&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;last&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;33&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;n&quot;&gt;token&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;OAuth&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;Client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get_token!&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;code&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;code&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;34&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt; &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;35&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;c1&quot;&gt;# 実際に健康情報を取得&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;36&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;c1&quot;&gt;# 体重 (kg),体脂肪率 (%),筋肉量 (kg),筋肉スコア,内臓脂肪レベル2(小数点有り、手入力含まず),基礎代謝量 (kcal),体内年齢 (才),推定骨量 (kg)&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;37&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;n&quot;&gt;tag&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;6021,6022,6023,6024,6025,6027,6028,6029&amp;quot;&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;38&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;n&quot;&gt;date&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;39&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;n&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;20150701000000&amp;quot;&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;40&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;n&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;20150930125959&amp;quot;&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;41&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;n&quot;&gt;format&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;json&amp;quot;&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;42&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;p&quot;&gt;%&amp;#x7b;&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:access_token&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;access_token&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;#x7d;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;token&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# ACCESS_TOKENを取得&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;43&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;nc&quot;&gt;OAuth&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;AccessToken&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;get!&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;token&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;44&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;      &lt;span class=&quot;s2&quot;&gt;&amp;quot;/status/innerscan.&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#&amp;#x7b;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;&amp;#x7d;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;?tag=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#&amp;#x7b;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tag&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;&amp;#x7d;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;amp;date=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#&amp;#x7b;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;&amp;#x7d;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;amp;from=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#&amp;#x7b;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;from&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;&amp;#x7d;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;amp;to=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#&amp;#x7b;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;to&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;&amp;#x7d;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;amp;access_token=&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#&amp;#x7b;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;access_token&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;&amp;#x7d;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;body&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;45&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;o&quot;&gt;|&amp;gt;&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;IO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;inspect&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;46&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt; &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;47&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;c1&quot;&gt;# 後始末&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;48&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;n&quot;&gt;delete_cookies&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;49&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;nc&quot;&gt;Hound&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;end_session&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;50&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;51&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;
-
-&lt;h2 id=&quot;section-2&quot;&gt;実行&lt;/h2&gt;
-
-&lt;p&gt;先にPhantomJSを立ち上げてプログラムを実行します。&lt;/p&gt;
-
-&lt;figure class=&quot;code-highlight-figure&quot;&gt;&lt;div class=&quot;code-highlight&quot;&gt;&lt;pre class=&quot;code-highlight-pre&quot;&gt;&lt;div data-line=&quot;1&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; phantomjs --webdriver&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;5555&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;
-
-&lt;figure class=&quot;code-highlight-figure&quot;&gt;&lt;div class=&quot;code-highlight&quot;&gt;&lt;pre class=&quot;code-highlight-pre&quot;&gt;&lt;div data-line=&quot;1&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$&lt;/span&gt; mix run -e Hlpget.start
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;2&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;go&quot;&gt;Compiled lib/hlpget.ex&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;3&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;go&quot;&gt;Generated hlpget app&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;4&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;gp&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;#x7b;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;birth_date&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;19xxxxxx&amp;quot;&lt;/span&gt;,
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;5&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;go&quot;&gt; &amp;quot;data&amp;quot; =&amp;gt; [%&amp;#x7b;&amp;quot;date&amp;quot; =&amp;gt; &amp;quot;201509292150&amp;quot;, &amp;quot;keydata&amp;quot; =&amp;gt; &amp;quot;xx.xx&amp;quot;,&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;6&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;go&quot;&gt;  &amp;quot;model&amp;quot; =&amp;gt; &amp;quot;01000088&amp;quot;, &amp;quot;tag&amp;quot; =&amp;gt; &amp;quot;6021&amp;quot;&amp;#x7d;,&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;7&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;go&quot;&gt;  %&amp;#x7b;&amp;quot;date&amp;quot; =&amp;gt; &amp;quot;201509292150&amp;quot;, &amp;quot;keydata&amp;quot; =&amp;gt; &amp;quot;xx.20&amp;quot;, &amp;quot;model&amp;quot; =&amp;gt; &amp;quot;01000088&amp;quot;,&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;8&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;go&quot;&gt;  &amp;quot;tag&amp;quot; =&amp;gt; &amp;quot;6022&amp;quot;&amp;#x7d;,&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;9&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;go&quot;&gt;  ...(省略)&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;10&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;go&quot;&gt;  %&amp;#x7b;&amp;quot;date&amp;quot; =&amp;gt; &amp;quot;201508272145&amp;quot;, &amp;quot;keydata&amp;quot; =&amp;gt; &amp;quot;xx.0&amp;quot;, &amp;quot;model&amp;quot; =&amp;gt; &amp;quot;01000088&amp;quot;, ...&amp;#x7d;,&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;11&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;go&quot;&gt;  %&amp;#x7b;&amp;quot;date&amp;quot; =&amp;gt; &amp;quot;201508272145&amp;quot;, &amp;quot;keydata&amp;quot; =&amp;gt; &amp;quot;xxxxx&amp;quot;, ...&amp;#x7d;,&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;12&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;go&quot;&gt;  %&amp;#x7b;&amp;quot;date&amp;quot; =&amp;gt; &amp;quot;201508272145&amp;quot;, ...&amp;#x7d;, %&amp;#x7b;...&amp;#x7d;, ...], &amp;quot;height&amp;quot; =&amp;gt; &amp;quot;xxx.x&amp;quot;,&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;13&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;go&quot;&gt;  &amp;quot;sex&amp;quot; =&amp;gt; &amp;quot;male&amp;quot;&amp;#x7d;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;
-
-&lt;p&gt;取得成功!&lt;br /&gt;
-あとは&lt;code&gt;IO.inspect&lt;/code&gt;の部分をCSVに変換して出力するなどして利用していきたいと思います。&lt;/p&gt;
-
-&lt;p&gt;ちなみに&lt;code&gt;&quot;model&quot; =&amp;gt; &quot;01000088&quot;&lt;/code&gt;は何かと思ったら、購入したiPhoneと連携する体組成計の事だったみたいだ。&lt;br /&gt;
-製品:&lt;a href=&quot;http://www.tanita.co.jp/product/g/_RD900BK/&quot;&gt;体組成計 インナースキャンデュアル RD-900&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;これから体重が増えやすい冬に向けて、こまめに計測して食べ過ぎには気をつけねば…&lt;/p&gt;
+&lt;h2 id=&quot;section-3&quot;&gt;各種設定&lt;/h2&gt;
 
 </description>
-        <pubDate>Sat, 07 Nov 2015 16:25:35 +0900</pubDate>
-        <link>https://core.garbage-collection.net/2015/11/07/elixir-healthplanet.html</link>
-        <guid isPermaLink="true">https://core.garbage-collection.net/2015/11/07/elixir-healthplanet.html</guid>
+        <pubDate>Sun, 27 Dec 2015 22:04:40 +0900</pubDate>
+        <link>https://core.garbage-collection.net/2015/12/27/ipad-mini4-coda.html</link>
+        <guid isPermaLink="true">https://core.garbage-collection.net/2015/12/27/ipad-mini4-coda.html</guid>
         
         
       </item>
     
       <item>
-        <title>[Elixir]Phontomjsでスクレイピング</title>
-        <description>&lt;p&gt;Elixirで&lt;a href=&quot;http://docs.seattlerb.org/mechanize/Mechanize.html&quot;&gt;Mechanize&lt;/a&gt;&lt;sup id=&quot;fnref:1&quot;&gt;&lt;a href=&quot;#fn:1&quot; class=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;は使えないかと検索してみたが見つからない。&lt;br /&gt;
-他に代わりになるようなライブラリは無いかと探していた所、&lt;br /&gt;
-&lt;a href=&quot;https://lord.io/blog/2015/elixir-scraping/&quot;&gt;この記事&lt;/a&gt;に行きあたり、&lt;a href=&quot;https://github.com/HashNuke/hound&quot;&gt;Hound&lt;/a&gt;というものを見つけた。&lt;/p&gt;
-
-&lt;p&gt;上記記事ではselenium-server経由でスクレイピングを行っているが、&lt;br /&gt;
-特に複数ブラウザで検証したり、ブラウザを立ち上げる必要もないので、&lt;br /&gt;
-Driverは&lt;a href=&quot;http://phantomjs.org&quot;&gt;PhantomJS&lt;/a&gt;&lt;sup id=&quot;fnref:2&quot;&gt;&lt;a href=&quot;#fn:2&quot; class=&quot;footnote&quot;&gt;2&lt;/a&gt;&lt;/sup&gt;を利用する事にする。&lt;/p&gt;
-
-&lt;h2 id=&quot;section&quot;&gt;まず準備&lt;/h2&gt;
-
-&lt;h3 id=&quot;phantomjs&quot;&gt;PhantomJSをインストール&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;Homebrew&lt;/strong&gt;ではエラーが出たので今回は&lt;strong&gt;npm&lt;/strong&gt;を使ってインストール&lt;/p&gt;
-
-&lt;figure class=&quot;code-highlight-figure&quot;&gt;&lt;div class=&quot;code-highlight&quot;&gt;&lt;pre class=&quot;code-highlight-pre&quot;&gt;&lt;div data-line=&quot;1&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;brew install phantomjs
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;2&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;phantomjs: OS X Yosemite or older is required.
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;3&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;Error: An unsatisfied requirement failed this build.
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;4&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;c&quot;&gt;# エラーで失敗したのでHomebrewは断念&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;5&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt; &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;6&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;npm install phantomjs&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;
-
-&lt;h3 id=&quot;elixirmix&quot;&gt;Elixir/mix&lt;/h3&gt;
-
-&lt;p&gt;mixでプロジェクトを作成して使用するライブラリをプロジェクトの設定ファイルに記述する。&lt;/p&gt;
-
-&lt;figure class=&quot;code-highlight-figure&quot;&gt;&lt;div class=&quot;code-highlight&quot;&gt;&lt;pre class=&quot;code-highlight-pre&quot;&gt;&lt;div data-line=&quot;1&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mix new scr&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;
-
-&lt;figure class=&quot;code-highlight-figure&quot;&gt;&lt;figcaption class=&quot;code-highlight-caption&quot;&gt;&lt;span class=&quot;code-highlight-caption-title&quot;&gt;mix.exs&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;code-highlight&quot;&gt;&lt;pre class=&quot;code-highlight-pre&quot;&gt;&lt;div data-line=&quot;1&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;p&quot;&gt;...(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;省略&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;2&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt; &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;3&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;kd&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;application&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;4&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;  &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;applications&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:logger&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:httpoison&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:hound&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;5&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;6&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt; &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;7&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;kd&quot;&gt;defp&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;deps&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;8&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;  &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;9&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;p&quot;&gt;&amp;#x7b;&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:httpoison&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;~&amp;gt; 0.7.4&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;#x7d;,&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;10&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;p&quot;&gt;&amp;#x7b;&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:floki&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;~&amp;gt; 0.6&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;#x7d;,&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;11&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;p&quot;&gt;&amp;#x7b;&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:hound&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;~&amp;gt; 0.7.2&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;#x7d;&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;12&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;  &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;13&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;14&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt; &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;15&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;p&quot;&gt;...(&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;省略&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;
-
-&lt;p&gt;続いて&lt;strong&gt;mix deps.get&lt;/strong&gt;を実行して、プロジェクトに必要なライブラリをインストールする。&lt;/p&gt;
-
-&lt;p&gt;最後に&lt;strong&gt;config/config.exs&lt;/strong&gt;にhoundの設定を記述する。&lt;br /&gt;
-参考: &lt;a href=&quot;https://github.com/HashNuke/hound/blob/master/notes/configuring-hound.md&quot;&gt;[GitHub] hound/config&lt;/a&gt;&lt;/p&gt;
-
-&lt;figure class=&quot;code-highlight-figure&quot;&gt;&lt;figcaption class=&quot;code-highlight-caption&quot;&gt;&lt;span class=&quot;code-highlight-caption-title&quot;&gt;config/config.exs&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;code-highlight&quot;&gt;&lt;pre class=&quot;code-highlight-pre&quot;&gt;&lt;div data-line=&quot;1&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;n&quot;&gt;config&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:hound&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;driver&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;phantomjs&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;host&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;http://localhost&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;port&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5555&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;
-
-&lt;p&gt;これでひとまず準備は終わり。&lt;/p&gt;
-
-&lt;h2 id=&quot;section-1&quot;&gt;コードを書く&lt;/h2&gt;
-
-&lt;p&gt;では準備が出来たので、Houndで自分のサイトにアクセスして、サイトのタイトルを取得するプログラムを書いてみる。&lt;/p&gt;
-
-&lt;figure class=&quot;code-highlight-figure&quot;&gt;&lt;figcaption class=&quot;code-highlight-caption&quot;&gt;&lt;span class=&quot;code-highlight-caption-title&quot;&gt;lib/scr.ex&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;code-highlight&quot;&gt;&lt;pre class=&quot;code-highlight-pre&quot;&gt;&lt;div data-line=&quot;1&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;kd&quot;&gt;defmodule&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Scr&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;2&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;  &lt;span class=&quot;kn&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Hound.Helpers&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;3&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt; &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;4&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;  &lt;span class=&quot;kd&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;start&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;5&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;n&quot;&gt;blog_url&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;http://core.garbage-collection.net/&amp;quot;&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;6&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;nc&quot;&gt;IO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;access to &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#&amp;#x7b;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;blog_url&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;&amp;#x7d;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; ...&amp;quot;&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;7&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt; &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;8&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;nc&quot;&gt;Hound&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;start_session&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;9&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;n&quot;&gt;navigate_to&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;10&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;nc&quot;&gt;IO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;page_title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# =&amp;gt; &amp;quot;core dump&amp;quot;というページタイトルが表示されるはず&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;11&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;12&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;
-
-&lt;h2 id=&quot;section-2&quot;&gt;いざ実行&lt;/h2&gt;
-
-&lt;p&gt;まずPhantomJSを立ち上げる&lt;/p&gt;
-
-&lt;figure class=&quot;code-highlight-figure&quot;&gt;&lt;div class=&quot;code-highlight&quot;&gt;&lt;pre class=&quot;code-highlight-pre&quot;&gt;&lt;div data-line=&quot;1&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;phantomjs --webdriver&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;5555&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;
-
-&lt;p&gt;続いてmixで書いたコードを実行する&lt;/p&gt;
-
-&lt;figure class=&quot;code-highlight-figure&quot;&gt;&lt;div class=&quot;code-highlight&quot;&gt;&lt;pre class=&quot;code-highlight-pre&quot;&gt;&lt;div data-line=&quot;1&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mix run -e Scr.start
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;2&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;Compiled lib/scr.ex
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;3&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;Generated scr app
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;4&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;access to http://core.garbage-collection.net/ ...
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;5&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;core dump &lt;span class=&quot;c&quot;&gt;# ちゃんとサイトのタイトルが表示された!&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;
-
-&lt;h2 id=&quot;section-3&quot;&gt;フォームの操作&lt;/h2&gt;
-
-&lt;p&gt;次にサイトにログインをして、ログイン後のページ内の情報を取得してみる。&lt;br /&gt;
-今回は&lt;a href=&quot;https://www.healthplanet.jp/logout.do&quot;&gt;HealthPlanet&lt;/a&gt;&lt;sup id=&quot;fnref:3&quot;&gt;&lt;a href=&quot;#fn:3&quot; class=&quot;footnote&quot;&gt;3&lt;/a&gt;&lt;/sup&gt;で試す。&lt;/p&gt;
-
-&lt;figure class=&quot;code-highlight-figure&quot;&gt;&lt;figcaption class=&quot;code-highlight-caption&quot;&gt;&lt;span class=&quot;code-highlight-caption-title&quot;&gt;lib/scr.ex(HealthPlanet版)&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;code-highlight&quot;&gt;&lt;pre class=&quot;code-highlight-pre&quot;&gt;&lt;div data-line=&quot;1&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;kd&quot;&gt;defmodule&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Scr&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;2&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;  &lt;span class=&quot;kn&quot;&gt;use&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Hound.Helpers&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;3&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt; &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;4&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;  &lt;span class=&quot;kd&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;start&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;5&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;n&quot;&gt;hp_url&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;https://www.healthplanet.jp/login.do&amp;quot;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# HealthPlanetのURL&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;6&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;n&quot;&gt;user&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;ユーザ名&amp;quot;&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;7&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;n&quot;&gt;passwd&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;パスワード&amp;quot;&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;8&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt; &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;9&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;nc&quot;&gt;IO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;access to &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#&amp;#x7b;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hp_url&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;&amp;#x7d;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; ...&amp;quot;&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;10&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt; &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;11&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;nc&quot;&gt;Hound&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;start_session&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;12&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;n&quot;&gt;navigate_to&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;hp_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;13&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;n&quot;&gt;find_element&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;loginId&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fill_field&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;14&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;n&quot;&gt;find_element&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;passwd&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fill_field&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;passwd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;15&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;n&quot;&gt;find_element&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;btn_yes&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;submit_element&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;16&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt; &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;17&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;nc&quot;&gt;IO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;page_title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# =&amp;gt; &amp;quot;HealthPlanet ヘルスプラネット&amp;quot;&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;18&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;nc&quot;&gt;IO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;find_element&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;userName&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;visible_text&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# =&amp;gt; &amp;quot;こんにちは、xxxxxさん&amp;quot;&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;19&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt; &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;20&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;21&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;
-
-&lt;p&gt;で実行&lt;/p&gt;
-
-&lt;figure class=&quot;code-highlight-figure&quot;&gt;&lt;div class=&quot;code-highlight&quot;&gt;&lt;pre class=&quot;code-highlight-pre&quot;&gt;&lt;div data-line=&quot;1&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mix run -e Scr.start
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;2&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;Compiled lib/scr.ex
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;3&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;Generated scr app
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;4&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;access to https://www.healthplanet.jp/login.do ...
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;5&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;Health Planet ヘルスプラネット
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;6&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;こんにちは、xxxxxさん&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;
-
-&lt;p&gt;これでフォーム操作含めたスクレイピングはMechanizeなしでもうまくできそうだ。&lt;br /&gt;
-今回サンプルで試したHealthPlanetにはサイトに保存されている健康データを&lt;br /&gt;
-&lt;a href=&quot;https://www.healthplanet.jp/apis/api.html&quot;&gt;APIで取得できるようになっている&lt;/a&gt;ので、今度はそっちを試してみようと思う。&lt;/p&gt;
-
-&lt;p&gt;今日はここまで。&lt;/p&gt;
-
-&lt;div class=&quot;footnotes&quot;&gt;
-  &lt;ol&gt;
-    &lt;li id=&quot;fn:1&quot;&gt;
-      &lt;p&gt;スクレイピングとかWebサイトのフォーム操作を助けてくれるありがたいライブラリ &lt;a href=&quot;#fnref:1&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:2&quot;&gt;
-      &lt;p&gt;画面表示が無い(headlessというらしい)ブラウザ &lt;a href=&quot;#fnref:2&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-    &lt;li id=&quot;fn:3&quot;&gt;
-      &lt;p&gt;タニタが運営している健康管理サービス &lt;a href=&quot;#fnref:3&quot; class=&quot;reversefootnote&quot;&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
-    &lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/div&gt;
+        <title>OL Workflow</title>
+        <description>&lt;p&gt;Workflowで通勤バスの時刻表を表示させる&lt;/p&gt;
 </description>
-        <pubDate>Mon, 02 Nov 2015 00:06:17 +0900</pubDate>
-        <link>https://core.garbage-collection.net/2015/11/02/how-to-start-phantomjs-in-elixir.html</link>
-        <guid isPermaLink="true">https://core.garbage-collection.net/2015/11/02/how-to-start-phantomjs-in-elixir.html</guid>
+        <pubDate>Wed, 23 Dec 2015 09:00:45 +0900</pubDate>
+        <link>https://core.garbage-collection.net/2015/12/23/ol-workflow.html</link>
+        <guid isPermaLink="true">https://core.garbage-collection.net/2015/12/23/ol-workflow.html</guid>
         
         
       </item>
     
       <item>
-        <title>[Elixir]関数型言語に触れてみる</title>
-        <description>&lt;p&gt;普段何か簡単な処理をする時にはRubyを常用してきた。&lt;br /&gt;
-ただそればかりじゃなく、他にも何か別の言語を使えるようになりたいなぁと思い、&lt;br /&gt;
-数年前にLISPやScalaをインストールしてみたんだけど、&lt;br /&gt;
-なかなか常用するぐらいには各言語の特徴を理解できず途中で放り投げていた。&lt;/p&gt;
+        <title>Mba windows8.1 Install 05</title>
+        <description>&lt;h2 id=&quot;section&quot;&gt;5回目&lt;/h2&gt;
 
-&lt;p&gt;そんな中、最近関数型言語に関する記事を多々見かけるようになり、&lt;br /&gt;
-もう一度何か別の言語に手を出してみようかなと徘徊していた所、下記の記事に出会った。&lt;/p&gt;
+&lt;p&gt;朝起きたら重要な更新が1件増えた&lt;br /&gt;
+→きずかずにWin10のチェックが入っている&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://codeiq.jp/magazine/2015/07/26120/&quot;&gt;[CodeIQ]「Ruby風味のプログラミング言語」四天王現る！&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;仕方ないのでアップグレード&lt;br /&gt;
+→画面暗くならない&lt;br /&gt;
+キーボードライトが起動時、シャットダウン時以外光らない&lt;/p&gt;
 
-&lt;p&gt;記事の中で関数型言語として&lt;strong&gt;&lt;a href=&quot;http://elixir-lang.org&quot;&gt;Elixir&lt;/a&gt;&lt;/strong&gt;という言語が紹介されており、&lt;br /&gt;
-Ruby風味でちょっと面白そうなので早速インストールしてみる事にした。&lt;/p&gt;
+&lt;p&gt;Minecraft Win10&lt;/p&gt;
 
-&lt;h2 id=&quot;section&quot;&gt;試しに何か書いてみる&lt;/h2&gt;
+&lt;p&gt;Mojang&lt;/p&gt;
 
-&lt;p&gt;お題として&lt;strong&gt;「500から10000まで1.03倍し続けた数字を表示する」&lt;/strong&gt;というプログラムを考えてみる。&lt;/p&gt;
+&lt;p&gt;Windows Score(XML)&lt;/p&gt;
 
-&lt;p&gt;まずはRubyから&lt;/p&gt;
+&lt;p&gt;Office2013/SkypeBusiness/OneDriveBusiness&lt;/p&gt;
 
-&lt;figure class=&quot;code-highlight-figure&quot;&gt;&lt;figcaption class=&quot;code-highlight-caption&quot;&gt;&lt;span class=&quot;code-highlight-caption-title&quot;&gt;upto.rb&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;code-highlight&quot;&gt;&lt;pre class=&quot;code-highlight-pre&quot;&gt;&lt;div data-line=&quot;1&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# 500から10000まで1.03倍し続けた数字を表示する&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;2&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# while利用バージョン&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;3&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt; &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;4&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;pp&amp;#39;&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;5&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt; &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;6&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;500&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;7&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;n&quot;&gt;upper&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10000&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;8&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;n&quot;&gt;rate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mo&quot;&gt;03&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;9&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;n&quot;&gt;list&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[]&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;10&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt; &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;11&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;upper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# upperに達するまで繰り返す&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;12&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;  &lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;push&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;13&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;  &lt;span class=&quot;n&quot;&gt;num&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rate&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# ここで現在の数字を1.03倍する&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;14&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;15&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt; &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;16&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;n&quot;&gt;pp&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;list&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;
+&lt;p&gt;トラックぱど/キーボード&lt;/p&gt;
 
-&lt;p&gt;なんかもっと良い書き方があるような気がするが、とりあえずwhileで回した。&lt;/p&gt;
-
-&lt;p&gt;次にElixir。&lt;br /&gt;
-関数型言語の場合、繰り返しは&lt;strong&gt;再帰&lt;/strong&gt;を用いて表現するのが好まれるようで、&lt;br /&gt;
-見よう見まねで以下のプログラムを書いた。&lt;/p&gt;
-
-&lt;figure class=&quot;code-highlight-figure&quot;&gt;&lt;figcaption class=&quot;code-highlight-caption&quot;&gt;&lt;span class=&quot;code-highlight-caption-title&quot;&gt;upto.exs&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;code-highlight&quot;&gt;&lt;pre class=&quot;code-highlight-pre&quot;&gt;&lt;div data-line=&quot;1&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# 500から10000まで1.03倍し続けた数字を表示する&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;2&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# 再帰を使ったバージョン&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;3&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt; &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;4&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;kd&quot;&gt;defmodule&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Example&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;5&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;  &lt;span class=&quot;kd&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;upto&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;begin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;upper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;6&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;begin&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rate&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;upper&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;7&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;      &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;begin&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;upto&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;begin&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;upper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;8&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;9&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;      &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;begin&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;10&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;11&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;12&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;13&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt; &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;14&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;n&quot;&gt;base&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;500&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;15&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;n&quot;&gt;upper&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10000&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;16&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;n&quot;&gt;rate&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.03&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;17&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt; &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;18&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;nc&quot;&gt;Example&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;upto&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;upper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;19&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;o&quot;&gt;|&amp;gt;&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Enum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;IO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;puts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ni&quot;&gt;&amp;amp;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)))&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;
-
-&lt;p&gt;求める結果は得られたが、再帰を使い慣れていない為か、書くのに時間がかかってしまった。&lt;/p&gt;
-
-&lt;p&gt;さらに言うなら結構行数が多くてどうもしっくり来ない。&lt;br /&gt;
-もっとお手軽に表現できないもんかとElixir関連の記事を漁っていた所、&lt;br /&gt;
-下記の&lt;strong&gt;無限リスト&lt;/strong&gt;が使えそうだと思い参考にしてみた。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://qiita.com/naoya@github/items/c71f614b5ed8c05b998c&quot;&gt;[Qiita]無限リストによるエラトステネスのふるい&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;上の記事を参考にして書き直したのが以下。&lt;/p&gt;
-
-&lt;figure class=&quot;code-highlight-figure&quot;&gt;&lt;figcaption class=&quot;code-highlight-caption&quot;&gt;&lt;span class=&quot;code-highlight-caption-title&quot;&gt;upto2.exs&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;code-highlight&quot;&gt;&lt;pre class=&quot;code-highlight-pre&quot;&gt;&lt;div data-line=&quot;1&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# 500から10000まで1.03倍し続けた数字を表示する&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;2&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# 無限リストを利用したバージョン その1&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;3&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt; &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;4&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;n&quot;&gt;base&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;500&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;5&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;n&quot;&gt;upper&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10000&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;6&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;n&quot;&gt;rate&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.03&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;7&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt; &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;8&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;nc&quot;&gt;Stream&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;iterate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ni&quot;&gt;&amp;amp;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# base(500)からスタートして1.03倍し続けた無限リストを作り...&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;9&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;o&quot;&gt;|&amp;gt;&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Stream&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;filter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ni&quot;&gt;&amp;amp;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;upper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# 上記無限リストからupper(10000)未満の条件でフィルタする&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;10&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;o&quot;&gt;|&amp;gt;&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Enum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;IO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;puts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ni&quot;&gt;&amp;amp;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)))&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# 後はフィルタされたリストを表示するだけ&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;
-
-&lt;p&gt;短くはなったが、ここで問題が発生。実行すると以下のエラーが出てしまった。&lt;/p&gt;
-
-&lt;figure class=&quot;code-highlight-figure&quot;&gt;&lt;figcaption class=&quot;code-highlight-caption&quot;&gt;&lt;span class=&quot;code-highlight-caption-title&quot;&gt;upto2.exs 実行結果&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;code-highlight&quot;&gt;&lt;pre class=&quot;code-highlight-pre&quot;&gt;&lt;div data-line=&quot;1&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;$ elixir upto2.exs
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;2&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;500
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;3&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;515.0
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;4&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;530.45
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;5&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;546.3635
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;6&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;...
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;7&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;(中略)
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;8&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;...
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;9&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;9057.701942151143
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;10&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;9329.433000415678
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;11&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;9609.31599042815
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;12&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;9897.595470140994
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;13&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;** (ArithmeticError) bad argument in arithmetic expression
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;14&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    upto2.exs:8: anonymous fn/1 in :elixir_compiler_0.__FILE__/1
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;15&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    (elixir) lib/stream.ex:1016: anonymous fn/2 in Stream.iterate/2
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;16&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    (elixir) lib/stream.ex:1189: Stream.do_unfold/4
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;17&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    (elixir) lib/stream.ex:1240: Enumerable.Stream.do_each/4
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;18&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    (elixir) lib/enum.ex:1391: Enum.reduce/3
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;19&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    (elixir) lib/enum.ex:1047: Enum.map/2&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;
-
-&lt;p&gt;どうも10000までのリストは得られているようだが、8行目の処理でエラーが出ているという表示だ。&lt;br /&gt;
-Stream.filterではなくEnum.takeで個数を指定するとエラーが出なくなる。&lt;br /&gt;
-filterを使って条件でリストを取得しようとするとエラーが出る。&lt;strong&gt;filter/2&lt;/strong&gt;ではダメなんだろうか。&lt;/p&gt;
-
-&lt;p&gt;参考にした無限リストのサンプルは、Enum.take(10)などでリストから何個取得するか明示している。&lt;br /&gt;
-が、今回のお題だと条件にマッチするリストが元から何個あるのかわからないので&lt;strong&gt;take/2&lt;/strong&gt;は使えない。&lt;/p&gt;
-
-&lt;p&gt;他にもStreamを使っているサンプルを探してみたが、&lt;br /&gt;
-take/2で何個取得するのが明示してあるものが多くエラー解消に結びつかない。&lt;/p&gt;
-
-&lt;p&gt;英語だからと避けていた公式ドキュメントで、改めて使えそうなものがないか物色。&lt;br /&gt;
-&lt;a href=&quot;http://elixir-lang.org/docs/v1.1/elixir/Enum.html#take_while/2&quot;&gt;[Elixir公式]take_while(collection, fun)&lt;/a&gt; … 名前がそれっぽいので説明を見る。&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Takes the items from the beginning of collection while fun returns a truthy value.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;strong&gt;これじゃね?&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;ということで9行目&lt;strong&gt;Stream.filter&lt;/strong&gt;の部分を書き換える。&lt;/p&gt;
-
-&lt;figure class=&quot;code-highlight-figure&quot;&gt;&lt;figcaption class=&quot;code-highlight-caption&quot;&gt;&lt;span class=&quot;code-highlight-caption-title&quot;&gt;upto3.exs&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;code-highlight&quot;&gt;&lt;pre class=&quot;code-highlight-pre&quot;&gt;&lt;div data-line=&quot;1&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# 500から10000まで1.03倍し続けた数字を表示する&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;2&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;c1&quot;&gt;# 無限リストを利用したバージョン その2&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;3&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt; &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;4&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;n&quot;&gt;base&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;500&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;5&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;n&quot;&gt;upper&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10000&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;6&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;n&quot;&gt;rate&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.03&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;7&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt; &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;8&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;nc&quot;&gt;Stream&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;iterate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;base&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ni&quot;&gt;&amp;amp;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# base(500)からスタートして1.03倍し続けた無限リストを作り...&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;9&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;o&quot;&gt;|&amp;gt;&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Enum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;take_while&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ni&quot;&gt;&amp;amp;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;upper&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# upperを超えるまで数字を取得し続ける&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;10&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;o&quot;&gt;|&amp;gt;&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Enum&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nc&quot;&gt;IO&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;puts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ni&quot;&gt;&amp;amp;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)))&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;
-
-&lt;figure class=&quot;code-highlight-figure&quot;&gt;&lt;figcaption class=&quot;code-highlight-caption&quot;&gt;&lt;span class=&quot;code-highlight-caption-title&quot;&gt;upto3.exs 実行結果&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;code-highlight&quot;&gt;&lt;pre class=&quot;code-highlight-pre&quot;&gt;&lt;div data-line=&quot;1&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;$ elixir upto3.exs
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;2&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;500
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;3&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;515.0
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;4&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;530.45
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;5&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;546.3635
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;6&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;...
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;7&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;(中略)
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;8&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;...
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;9&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;9057.701942151143
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;10&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;9329.433000415678
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;11&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;9609.31599042815
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;12&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;9897.595470140994
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;13&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;(エラーなし)&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;
-
-&lt;p&gt;教訓: 公式ドキュメントを見るのは大切ですね&lt;/p&gt;
-
-&lt;p&gt;今回Ruby以外の言語も使えるようになりたいという事でElixirを触ってみましたが、&lt;br /&gt;
-&lt;strong&gt;パイプライン演算子&lt;/strong&gt;や&lt;strong&gt;Stream(遅延評価)&lt;/strong&gt;など面白い要素があり勉強になりました。&lt;br /&gt;
-これからも、もう少し色々試してみようと思います。&lt;/p&gt;
-
+&lt;p&gt;リモートコントロール&lt;/p&gt;
 </description>
-        <pubDate>Sat, 24 Oct 2015 14:51:37 +0900</pubDate>
-        <link>https://core.garbage-collection.net/2015/10/24/elixir-for-loop.html</link>
-        <guid isPermaLink="true">https://core.garbage-collection.net/2015/10/24/elixir-for-loop.html</guid>
+        <pubDate>Wed, 23 Dec 2015 09:00:45 +0900</pubDate>
+        <link>https://core.garbage-collection.net/2015/12/23/mba-windows8-1-install-05.html</link>
+        <guid isPermaLink="true">https://core.garbage-collection.net/2015/12/23/mba-windows8-1-install-05.html</guid>
         
         
       </item>
     
       <item>
-        <title>MacBook Air(mid2011) に Windows8.1 Proをインストール (2) -- Dragon&#39;s Dogma Online</title>
-        <description>&lt;h2 id=&quot;dragons-dogma-online&quot;&gt;Dragon’s Dogma Online(ベンチマーク)&lt;/h2&gt;
+        <title>MacBook Air(mid2011) に Windows8.1 Proをインストール (3) -- 無線LAN</title>
+        <description>&lt;h2 id=&quot;section&quot;&gt;4回目&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&quot;/2015/08/11/mba-windows8-1-install-02.html&quot;&gt;前回&lt;/a&gt;からの続き&lt;/p&gt;
+&lt;p&gt;DDoアンインストール&lt;/p&gt;
 
-&lt;p&gt;ビデオドライバとWindowsの自動更新を後回しにする事で&lt;br /&gt;
-突然画面が真っ暗になる状況を回避。&lt;/p&gt;
+&lt;p&gt;重要な更新インストール(Intel HDは除く)&lt;br /&gt;
+なぜかWindows10のアップグレードチェックある&lt;/p&gt;
 
-&lt;p&gt;しかし解像度が低くキーボードライトは光ったまま。&lt;br /&gt;
-細かい設定もしていないので、キーボードとトラックパッドが使いづらい。&lt;/p&gt;
+&lt;p&gt;ネット接続不安定に&lt;br /&gt;
+Microsoftのドライバじゃなく&lt;br /&gt;
+BootCampのドライバを入れ直して一覧から選択&lt;br /&gt;
+→制限されたネットワーク&lt;/p&gt;
 
-&lt;p&gt;通常は先にWindowsの環境を整えてから、個別のアプリケーションをインストールした方が良いのだろうが&lt;br /&gt;
-トラブルシュート続きで飽きてしまったので、&lt;br /&gt;
-先に試してみたかったDragon’s Dogma Onlineを動かしてみる事にする。&lt;/p&gt;
-
-&lt;h3 id=&quot;section&quot;&gt;ソフトとドライバをインストール&lt;/h3&gt;
-
-&lt;p&gt;まずはゲーム本体をインストールする前に、&lt;br /&gt;
-ベンチマークで快適にプレイできるかチェック。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://members.dd-on.jp/info/detail/4/119&quot;&gt;公式サイト&lt;/a&gt;からベンチマークソフトをDLしインストール。&lt;br /&gt;
-しかし「コンピューターにd3dx9_43.dllがないため〜」とエラーが出て起動せず。&lt;br /&gt;
-ネット検索をしてみるとDirectXが無い時のエラーの様だ。&lt;/p&gt;
-
-&lt;p&gt;こうなるとビデオドライバが無いと先に進めないので解決方法を探すしかない。&lt;br /&gt;
-幸運にも「&lt;a href=&quot;https://discussions.apple.com/thread/6527859?start=0&amp;amp;tstart=0&quot;&gt;Intel HD 3000 Bootcamp/Black screen/Windows driver&lt;/a&gt;」という情報があったので参考にする。&lt;br /&gt;
-内容としては「ちゃんとMacに対応した最新のBootCamp使ってる?」という事と、&lt;br /&gt;
-「Intelからドライバ落としてきたら?」という内容。&lt;/p&gt;
-
-&lt;p&gt;最新のBootCampは使っていたので、&lt;br /&gt;
-Intelからビデオドライバを落としてくる事にする。&lt;br /&gt;
-…が、Intelのページで迷子になってしまい、対応チップのドライバ単体ではなく、&lt;br /&gt;
-「&lt;a href=&quot;http://www.intel.com/p/ja_JP/support/detect&quot;&gt;Intel Driver Update Utility&lt;/a&gt;」をインストールしてしまった。&lt;br /&gt;
-まあ、最終的に適切なドライバが入ればいいか。&lt;/p&gt;
-
-&lt;p&gt;デスクトップに上記ユーティリティのインストーラをDLした所。&lt;br /&gt;
-(解像度が低いので画面が狭く、キーボードライトも光ったまま。非常に使いづらい)&lt;br /&gt;
-&lt;img src=&quot;https://dl.dropboxusercontent.com/u/16587369/win81-desktop.jpg&quot; alt=&quot;Windows8.1 Desktop&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;ビデオドライバインストール後。解像度が上がり(1366x768)右横にスペースができている&lt;br /&gt;
-&lt;img src=&quot;https://dl.dropboxusercontent.com/u/16587369/win81-desktop-driver-installed.jpg&quot; alt=&quot;Intel Driver Installed&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;次に古いDirectXを&lt;a href=&quot;http://www.microsoft.com/ja-jp/download/details.aspx?id=35&quot;&gt;インストール&lt;/a&gt;。&lt;br /&gt;
-というのも「d3dx9_43.dll」は&lt;strong&gt;DirectX 9&lt;/strong&gt;で、&lt;br /&gt;
-Windows8.1は&lt;strong&gt;DirectX 11&lt;/strong&gt;しかデフォルトでは入っていないからだ。&lt;/p&gt;
-
-&lt;h3 id=&quot;section-1&quot;&gt;ベンチマークスタート&lt;/h3&gt;
-
-&lt;p&gt;これでやっと準備が整ったので、ベンチマークスタート。&lt;br /&gt;
-Macのファンがめちゃくちゃ回り、ベンチのムービーがカクカクしている。&lt;br /&gt;
-幸先良く無いな…。画面を見ると&lt;strong&gt;最高品質&lt;/strong&gt;と表示されているので、これが原因だろう。&lt;/p&gt;
-
-&lt;p&gt;ちなみに以下がスコアに応じた評価になる。&lt;br /&gt;
-※ベンチスコア(公式より)&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;strong&gt;スコア&lt;/strong&gt;&lt;/td&gt;
-      &lt;td&gt;&lt;strong&gt;評価&lt;/strong&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;7000〜&lt;/td&gt;
-      &lt;td&gt;とても快適&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;3500〜6999&lt;/td&gt;
-      &lt;td&gt;快適&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;2000〜3499&lt;/td&gt;
-      &lt;td&gt;普通&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;1000〜1999&lt;/td&gt;
-      &lt;td&gt;設定値変更を推奨&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;1000未満&lt;/td&gt;
-      &lt;td&gt;動作困難&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;期待と不安が入り混じる中ベンチ結果が出た。&lt;br /&gt;
-&lt;img src=&quot;https://dl.dropboxusercontent.com/u/16587369/ddo_bench_high_quality.jpg&quot; alt=&quot;BenchMark high quality&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;スコア809…結果は惨憺たるものだった。&lt;br /&gt;
-こちらとしても4年前のマシンで、&lt;br /&gt;
-最新のゲームが最高品質でなんて動くはずないとは思っていたので特に失望もない。&lt;br /&gt;
-ただ、思ったよりもスコアが低いので、最低品質で動作するのか不安になってきた。&lt;br /&gt;
-では期待を込めて&lt;strong&gt;標準&lt;/strong&gt;、&lt;strong&gt;低&lt;/strong&gt;で再度ベンチマークを走らせてみよう。&lt;/p&gt;
-
-&lt;p&gt;ベンチマーク最終結果&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;strong&gt;品質&lt;/strong&gt;&lt;/td&gt;
-      &lt;td&gt;&lt;strong&gt;スコア&lt;/strong&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;最高&lt;/td&gt;
-      &lt;td&gt;809&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;標準&lt;/td&gt;
-      &lt;td&gt;845&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;低&lt;/td&gt;
-      &lt;td&gt;855&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;&lt;strong&gt;低&lt;/strong&gt;、&lt;strong&gt;標準&lt;/strong&gt;、&lt;strong&gt;最高&lt;/strong&gt;と三段階あったが、どれもスコアが1000に満たず&lt;strong&gt;動作困難&lt;/strong&gt;という評価だった。&lt;br /&gt;
-最低品質でもこの評価では、ゲーム本体をインストールした所でまともにプレイは出来ないだろう。&lt;br /&gt;
-無駄なあがきをする気力も起きない。&lt;/p&gt;
-
-&lt;p&gt;結果がわかっただけでも満足だ。もういい。&lt;br /&gt;
-速やかにベンチマークソフトをアンインストールしたが、&lt;br /&gt;
-そこからまたトラブルが発生してしまった。&lt;/p&gt;
-
-&lt;p&gt;次回へ続く&lt;/p&gt;
-</description>
-        <pubDate>Sat, 15 Aug 2015 19:25:27 +0900</pubDate>
-        <link>https://core.garbage-collection.net/2015/08/15/mba-windows8-1-install-03.html</link>
-        <guid isPermaLink="true">https://core.garbage-collection.net/2015/08/15/mba-windows8-1-install-03.html</guid>
-        
-        
-      </item>
-    
-      <item>
-        <title>MacBook Air(mid2011) に Windows8.1 Proをインストール (1) -- インストール</title>
-        <description>&lt;h2 id=&quot;section&quot;&gt;インストール&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;/2015/08/08/mba-mid2011-install-windows8-1-pro.html&quot;&gt;前回&lt;/a&gt;からの続き&lt;br /&gt;
-今回はインストールから最低限動作するまで&lt;/p&gt;
-
-&lt;h3 id=&quot;section-1&quot;&gt;環境&lt;/h3&gt;
-
-&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://support.apple.com/kb/SP631?locale=ja_JP&amp;amp;viewlocale=ja_JP&quot;&gt;MacBook Air(mid2011)&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Size&lt;/td&gt;
-      &lt;td&gt;&lt;strong&gt;11inch&lt;/strong&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;CPU&lt;/td&gt;
-      &lt;td&gt;&lt;strong&gt;Intel Core i5(1.6GHz)&lt;/strong&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Mem&lt;/td&gt;
-      &lt;td&gt;&lt;strong&gt;4GB&lt;/strong&gt;(オンラインストアで増量)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;SSD&lt;/td&gt;
-      &lt;td&gt;&lt;strong&gt;64GB&lt;/strong&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Key&lt;/td&gt;
-      &lt;td&gt;&lt;strong&gt;US配列&lt;/strong&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3 id=&quot;section-2&quot;&gt;手順&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;外付けDVD-ROMドライブに&lt;strong&gt;Windows8.1 Pro&lt;/strong&gt;のディスクをセット&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Macに外付けドライブを繋いで電源ON&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;起動音が鳴ったら&lt;code&gt;Option&lt;/code&gt;キーを押す&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;EFI Boot&lt;/strong&gt;と表示のあるCD-ROMのアイコンを選択&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;セットアップ画面&lt;/strong&gt;が表示されるので&lt;strong&gt;英語キーボード&lt;/strong&gt;を選択して&lt;strong&gt;次へ&lt;/strong&gt;&lt;br /&gt;
-  &lt;img src=&quot;https://dl.dropboxusercontent.com/u/16587369/dvd-boot-win81.jpg&quot; alt=&quot;セットアップ画面&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;シリアル&lt;/strong&gt;を入力し&lt;strong&gt;ライセンス条項&lt;/strong&gt;に同意するとパーティションテーブルが表示される&lt;br /&gt;
-  &lt;img src=&quot;https://dl.dropboxusercontent.com/u/16587369/partition-table.jpg&quot; alt=&quot;パーティションテーブル&quot; /&gt;&lt;br /&gt;
-  &lt;strong&gt;パーティション4&lt;/strong&gt;が以前Windows10のインストールに失敗した領域&lt;br /&gt;
-  &lt;strong&gt;パーティション3&lt;/strong&gt;がWindowsをインストールしようとすると自動的に作成されるMBR領域&lt;br /&gt;
-  正直な所、UEFIでインストールしたかったのでMBRが作成されても困るのだが、&lt;br /&gt;
-  良くわからなかったので放置していた&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;パーティション2(OSX)、3、4を削除し、改めて新規パーティションを作成するが、やはりMBRが作成されてしまう&lt;br /&gt;
-  &lt;img src=&quot;https://dl.dropboxusercontent.com/u/16587369/repartition.jpg&quot; alt=&quot;パーティション再作成&quot; /&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;仕方がないのでこのままパーティション3をフォーマットしインストール&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;インストールも終わりに近づいた所で、&lt;strong&gt;Windows10にアップグレード&lt;/strong&gt;の画面が出たが拒否&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Windows8.1のデスクトップ画面が表示された。&lt;br /&gt;
-  解像度は1366x768(スクリーンショットを撮りたかったがキーがわからない)&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;ここでUSBメモリを接続し&lt;strong&gt;BootCamp 5.1.5621&lt;/strong&gt;のインストールを始めたが、途中で画面が真っ暗に&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;…Windows10と同じ症状が。どうもBootCampが鬼門らしい。&lt;/p&gt;
-
-&lt;p&gt;もう一度DVD-ROMからインストールし直してみるが、&lt;br /&gt;
-今度は何度やっても&lt;strong&gt;手順4.&lt;/strong&gt;から画面が真っ暗になり進まない。&lt;/p&gt;
-
-&lt;p&gt;しばらくしてUSBメモリが接続したままだった事を思い出し一旦外す。&lt;br /&gt;
-これで次の画面へ進める事が出来た。&lt;/p&gt;
-
-&lt;p&gt;しかし&lt;strong&gt;手順7.&lt;/strong&gt;でパーティションを作り直した所、今度はエラーが出てフォーマット出来なくなった。&lt;br /&gt;
-思い切ってパーティション1(EFI)も削除して作り直した所フォーマット成功。&lt;br /&gt;
-やっとDVD-ROMでもう一度インストール出来た。&lt;strong&gt;Windows10のアップグレード&lt;/strong&gt;が表示されたが拒否。&lt;/p&gt;
-
-&lt;p&gt;デスクトップの画面まで戻って来れたのはいいが、解像度が1024x768になっていて変更が出来ない。&lt;br /&gt;
-とりあえず鬼門のBootCampは後回しにし、8.1の操作に慣れようと&lt;br /&gt;
-10分ほど設定項目などメニューを触っていた所、また画面が真っ暗に…。&lt;br /&gt;
-11時頃からインストールを始めたが、15時近くになってまた振り出しに戻ってしまった。&lt;/p&gt;
-
-&lt;p&gt;再度DVD-ROMを起動しセットアップメニューで途方に暮れていた所、&lt;br /&gt;
-メニュー内にディスククリーンのような項目があり、実施すると&lt;strong&gt;手順9.&lt;/strong&gt;あたりまで戻ってくる事が出来た。&lt;br /&gt;
-&lt;strong&gt;Windows10のアップグレード&lt;/strong&gt;は拒否。&lt;/p&gt;
-
-&lt;p&gt;ここで一旦Windowsの電源を落として、不具合の原因と今後の方針を考てみる。&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;画面が暗くなるという事はビデオドライバ周りのトラブルの可能性が高い&lt;br /&gt;
--&amp;gt; USBメモリ内のBootCamp/Driversから&lt;strong&gt;ATI,Intel,NVidiaのドライバを削除&lt;/strong&gt;&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;WindowsUpdateの自動更新が裏で走っていて、&lt;br /&gt;
-10分ぐらいのタイミングで更新している内容に画面が真っ暗になる要因があるのではないか&lt;br /&gt;
--&amp;gt; 自動更新の停止&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;まずWindowsを立ち上げた後、真っ先に&lt;strong&gt;自動更新の停止&lt;/strong&gt;を実施。&lt;br /&gt;
-次に一部ドライバ削除したUSBメモリのBootCampを実行した所、&lt;br /&gt;
-途中で画面が暗くなる事もなくBootCampのインストール完了。&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;また10分経っても画面が暗くなる事はなくなった。&lt;/strong&gt;&lt;br /&gt;
-やはりビデオドライバ周りのトラブルだった様だ。&lt;/p&gt;
-
-&lt;p&gt;ようやっと突然画面が暗くなる症状に怯える事なく、Windowsが使える様にはなったが、&lt;br /&gt;
-まだ解決していない問題が2つあった。&lt;/p&gt;
-
-&lt;p&gt;一つは横に間延びした解像度(1024x768)の画面。&lt;br /&gt;
-上記理由により、ビデオドライバの問題を更新しない限り解決する事は出来ないだろう。&lt;br /&gt;
-しかしどのビデオドライバを使ったら良いのかわからない。&lt;/p&gt;
-
-&lt;p&gt;そしてもう一つは、初回インストールからずっと光続けるキーボードライト。&lt;br /&gt;
-再起動する度に消したはずのライトが光ってしまう。&lt;br /&gt;
-どうしたら設定が保存されるかわからない。&lt;/p&gt;
-
-&lt;p&gt;この段階で時間は19時を回っており、&lt;br /&gt;
-トラブルシュートばかりにうんざりしていたので、&lt;br /&gt;
-上記問題は後回しにしてWindowsでやってみたい事に先に手を出す事にした。&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://www.dd-on.jp/pc/&quot;&gt;Dragon’s Dogma Online&lt;/a&gt;のインストールである。&lt;/p&gt;
-
-&lt;p&gt;次回へ&lt;/p&gt;
-</description>
-        <pubDate>Tue, 11 Aug 2015 00:35:45 +0900</pubDate>
-        <link>https://core.garbage-collection.net/2015/08/11/mba-windows8-1-install-02.html</link>
-        <guid isPermaLink="true">https://core.garbage-collection.net/2015/08/11/mba-windows8-1-install-02.html</guid>
-        
-        
-      </item>
-    
-      <item>
-        <title>MacBook Air(mid2011) に Windows8.1 Proをインストール (0) -- 動機</title>
-        <description>&lt;h2 id=&quot;section&quot;&gt;動機&lt;/h2&gt;
-
-&lt;p&gt;Windows10 Insider Previewが出たのを契機に、昔購入した&lt;a href=&quot;https://support.apple.com/kb/SP631?locale=ja_JP&amp;amp;viewlocale=ja_JP&quot;&gt;MacBook Air(mid2011)&lt;/a&gt;が余っていたので、&lt;br /&gt;
-インストールして遊んでみようと思った。あわよくば最低品質でも良いので&lt;a href=&quot;http://www.dd-on.jp/pc/&quot;&gt;Dragon’s Dogma Online&lt;/a&gt;がプレイ出来るんじゃないかと甘い目論見もあった。&lt;/p&gt;
-
-&lt;p&gt;しかしインストールで何度もつまずき、&lt;br /&gt;
-インストール後もBootCampのソフトウェアを入れると画面がブラックアウトしてしまう症状に遭遇。&lt;br /&gt;
-それならとBootCampを入れずに使おうとすると自動更新がかかり、やはり同じ症状になる。&lt;/p&gt;
-
-&lt;p&gt;7月頃から色々試行錯誤するも改善の見込みなく、結局Windows10は断念したが、&lt;br /&gt;
- いくつか試してみたい事があって、Windowsを購入する事にした。&lt;br /&gt;
-どのバージョンにするか迷ったが、以下の条件からWindows8.1 Proを選択。&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;UEFI環境でインストールしたい&lt;/li&gt;
-  &lt;li&gt;契約しているOffice365のAzureADに参加したい&lt;/li&gt;
-  &lt;li&gt;将来的にWindows10にアップグレードした場合、&lt;a href=&quot;http://ascii.jp/elem/000/001/030/1030049/&quot;&gt;更新が強制的にかかる&lt;/a&gt;様になるが、&lt;br /&gt;
-  出来るだけ新機能の適用を先延ばしして様子見したい。&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;1.は今回デュアルブートにする予定もないので、&lt;br /&gt;
-BootCampアシスタントを利用したインストール時のMBRパーティション周りのトラブルは避けたい。&lt;br /&gt;
-まっさらなSSDにインストールするのであれば、素のUEFI環境に対応したOSなら大丈夫だろう。&lt;br /&gt;
-という条件で調べた所、MacのUEFIとWindows7はあまり相性が良くない、という記述を見かけたのでWindows7は脱落。&lt;/p&gt;
-
-&lt;p&gt;2.はOffice365を契約しており、利用できるならせっかくだしという理由。Pro以上のバージョンが必要。&lt;/p&gt;
-
-&lt;p&gt;3.は今までWindowsを使っていた時に、自分のタイミングで手動更新していたので、&lt;br /&gt;
-勝手にアップデートがかかるのは嫌だという理由。Pro以上ならある程度アップデートのタイミングを&lt;a href=&quot;http://bluewatersoft.cocolog-nifty.com/blog/2015/05/windows-10-wind.html&quot;&gt;コントロールする事が出来る&lt;/a&gt;みたいだ。&lt;/p&gt;
-
-&lt;p&gt;以上からWindows8.1 Pro(DSP版)を購入。￥16,462。&lt;br /&gt;
-Windows10と同じ結果になったらどうしようと思ったが、さすがに枯れているだろうし、&lt;br /&gt;
-インストールに成功している記事も見かけたので、リスクは低いだろうと考えた。&lt;br /&gt;
-ダメだったら最悪VirtualBox上で利用しよう。&lt;/p&gt;
-
-&lt;p&gt;そして今日(8/8)Windows8.1が届いた。&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://dl.dropboxusercontent.com/u/16587369/Win8disc.jpg&quot; alt=&quot;Windows8.1 Disk&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;/2015/08/11/mba-windows8-1-install-02.html&quot;&gt;次回&lt;/a&gt;へ続く&lt;/p&gt;
+&lt;p&gt;ルータがおかしい&lt;br /&gt;
+他のMac/iPhoneもWifi不安定&lt;br /&gt;
+ルータ再起動改善なし&lt;br /&gt;
+初期化→改善&lt;/p&gt;
 
 </description>
-        <pubDate>Sat, 08 Aug 2015 23:53:13 +0900</pubDate>
-        <link>https://core.garbage-collection.net/2015/08/08/mba-mid2011-install-windows8-1-pro.html</link>
-        <guid isPermaLink="true">https://core.garbage-collection.net/2015/08/08/mba-mid2011-install-windows8-1-pro.html</guid>
-        
-        
-      </item>
-    
-      <item>
-        <title>OctpressでPost Errorが出た</title>
-        <description>&lt;p&gt;久々に記事を投稿しようとした所、&lt;br /&gt;
-OctpressでPostエラーが出てしまった。&lt;/p&gt;
-
-&lt;figure class=&quot;code-highlight-figure&quot;&gt;&lt;div class=&quot;code-highlight&quot;&gt;&lt;pre class=&quot;code-highlight-pre&quot;&gt;&lt;div data-line=&quot;1&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;... /.rbenv/versions/2.2.2/lib/ruby/gems/2.2.0/gems/safe_yaml-1.0.4/lib/safe_yaml/psych_resolver.rb:4:in `&amp;lt;class:PsychResolver&amp;gt;&#39;: uninitialized constant Psych::Nodes (NameError)&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;
-
-&lt;p&gt;調べた所、&lt;a href=&quot;https://github.com/jekyll/jekyll/issues/3201&quot;&gt;同じエラーが出ている人&lt;/a&gt;がいて&lt;br /&gt;
-$ gem cleanup をしたら解決した。&lt;/p&gt;
-
-</description>
-        <pubDate>Sat, 08 Aug 2015 23:04:36 +0900</pubDate>
-        <link>https://core.garbage-collection.net/2015/08/08/octpress-post-error.html</link>
-        <guid isPermaLink="true">https://core.garbage-collection.net/2015/08/08/octpress-post-error.html</guid>
-        
-        
-      </item>
-    
-      <item>
-        <title>Octopress Plugin追加</title>
-        <description>&lt;p&gt;昨日はSyntaxHighlightを有効にする為、  &lt;br /&gt;
-_config.ymlでsyntax_highlighter_opts: { inline_theme: monokai }を設定してみたが、  &lt;br /&gt;
-Pluginで設定できる事がわかった。&lt;/p&gt;
-
-&lt;p&gt;“octopress-codefence”と”octopress-solarized”をGemfileに追加してbundleすると、  &lt;br /&gt;
-必要な機能がインストールされる。&lt;/p&gt;
-
-&lt;figure class=&quot;code-highlight-figure&quot;&gt;&lt;figcaption class=&quot;code-highlight-caption&quot;&gt;&lt;span class=&quot;code-highlight-caption-title&quot;&gt;Gemfile&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;code-highlight&quot;&gt;&lt;pre class=&quot;code-highlight-pre&quot;&gt;&lt;div data-line=&quot;1&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;source &amp;#39;https://rubygems.org&amp;#39;&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;2&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt; &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;3&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;gem &amp;#39;octopress&amp;#39;, &amp;#39;~&amp;gt; 3.0&amp;#39;&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;4&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt; &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;5&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;group :jekyll_plugins do&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;6&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;#  gem &amp;#39;octopress-codeblock&amp;#39;&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;7&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;  &lt;span class=&quot;l-Scalar-Plain&quot;&gt;gem &amp;#39;octopress-codefence&amp;#39;&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;8&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;  &lt;span class=&quot;l-Scalar-Plain&quot;&gt;gem &amp;#39;octopress-image-tag&amp;#39;&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;9&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;  &lt;span class=&quot;l-Scalar-Plain&quot;&gt;gem &amp;#39;octopress-quote-tag&amp;#39;&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;10&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;  &lt;span class=&quot;l-Scalar-Plain&quot;&gt;gem &amp;#39;octopress-solarized&amp;#39;&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;11&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;  &lt;span class=&quot;l-Scalar-Plain&quot;&gt;gem &amp;#39;octopress-social&amp;#39;&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;12&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;  &lt;span class=&quot;l-Scalar-Plain&quot;&gt;gem &amp;#39;octopress-ink&amp;#39;&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;13&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;#  gem &amp;#39;octopress-linkblog&amp;#39;&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;14&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;#  gem &amp;#39;octopress-filter-tag&amp;#39;&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;15&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;#  gem &amp;#39;octopress-filters&amp;#39;&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;16&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;#  gem &amp;#39;octopress-comment-tag&amp;#39;&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;17&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;  &lt;span class=&quot;l-Scalar-Plain&quot;&gt;gem &amp;#39;jekyll-sitemap&amp;#39;&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;18&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;end&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;
-
-&lt;p&gt;後は_plugins/solarized/_config.ymlを作成し、  &lt;br /&gt;
-styleを指定するとSyntaxHighlightが有効になる。&lt;/p&gt;
-
-&lt;figure class=&quot;code-highlight-figure&quot;&gt;&lt;figcaption class=&quot;code-highlight-caption&quot;&gt;&lt;span class=&quot;code-highlight-caption-title&quot;&gt;_plugins/solarized/_config.yml&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;code-highlight&quot;&gt;&lt;pre class=&quot;code-highlight-pre&quot;&gt;&lt;div data-line=&quot;1&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;l-Scalar-Plain&quot;&gt;style&lt;/span&gt;&lt;span class=&quot;p-Indicator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;l-Scalar-Plain&quot;&gt;light&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;
-
-&lt;p&gt;サンプルコード(Ruby)&lt;/p&gt;
-
-&lt;figure class=&quot;code-highlight-figure&quot;&gt;&lt;figcaption class=&quot;code-highlight-caption&quot;&gt;&lt;span class=&quot;code-highlight-caption-title&quot;&gt;ruby/sample.rb&lt;/span&gt;&lt;/figcaption&gt;&lt;div class=&quot;code-highlight&quot;&gt;&lt;pre class=&quot;code-highlight-pre&quot;&gt;&lt;div data-line=&quot;1&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Hoge&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;2&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;fuga&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;3&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;    &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;テスト&amp;quot;&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;4&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;5&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;6&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt; &lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;7&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;n&quot;&gt;hogehoge&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Hoge&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;
-&lt;/div&gt;&lt;/div&gt;&lt;div data-line=&quot;8&quot; class=&quot;code-highlight-row numbered&quot;&gt;&lt;div class=&quot;code-highlight-line&quot;&gt;&lt;span class=&quot;n&quot;&gt;hogehoge&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fuga&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;# &amp;quot;テスト&amp;quot;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/figure&gt;
-
-</description>
-        <pubDate>Tue, 30 Jun 2015 22:05:01 +0900</pubDate>
-        <link>https://core.garbage-collection.net/2015/06/30/octopress-plugin.html</link>
-        <guid isPermaLink="true">https://core.garbage-collection.net/2015/06/30/octopress-plugin.html</guid>
+        <pubDate>Wed, 23 Dec 2015 09:00:45 +0900</pubDate>
+        <link>https://core.garbage-collection.net/2015/12/23/mba-windows8-1-install-04.html</link>
+        <guid isPermaLink="true">https://core.garbage-collection.net/2015/12/23/mba-windows8-1-install-04.html</guid>
         
         
       </item>
